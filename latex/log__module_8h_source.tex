@@ -1,0 +1,68 @@
+\doxysection{log\+\_\+module.\+h}
+\hypertarget{log__module_8h_source}{}\label{log__module_8h_source}\mbox{\hyperlink{log__module_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ LOG\_MODULE\_H}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LOG\_MODULE\_H}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}unistd.h"{}}\ \ \textcolor{comment}{//\ to\ use\ getcwd}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}stdarg.h"{}}\ \textcolor{comment}{//\ to\ use\ va\_start}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <time.h>}\ \ \ \textcolor{comment}{//To\ get\ the\ date}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ LOG\_INFO\_T,}
+\DoxyCodeLine{00057\ \ \ \ \ LOG\_DEBUG\_T,}
+\DoxyCodeLine{00058\ \ \ \ \ LOG\_WARNING\_T,}
+\DoxyCodeLine{00059\ \ \ \ \ LOG\_ERROR\_T,}
+\DoxyCodeLine{00060\ \ \ \ \ LOG\_FATAL\_T,}
+\DoxyCodeLine{00061\ \ \ \ \ LOG\_UNSUPPORTED}
+\DoxyCodeLine{00062\ \}\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ PATH\_EN\_T\ =\ (1\ <<\ 0),}
+\DoxyCodeLine{00075\ \ \ \ \ NAME\_FILE\_EN\_T\ =\ (1\ <<\ 1),\ \textcolor{comment}{//\ 0000\ 0010\ -\/>\ \string~1111\ 1101}}
+\DoxyCodeLine{00076\ \ \ \ \ LINE\_EN\_T\ =\ (1\ <<\ 2),}
+\DoxyCodeLine{00077\ \ \ \ \ DATE\_EN\_T\ =\ \ (1\ <<\ 3),}
+\DoxyCodeLine{00078\ \ \ \ \ ALL\_DISABLED\_T\ =\ \ (0x00),}
+\DoxyCodeLine{00079\ \ \ \ \ ALL\_ENABLED\_T\ =\ \ (0x0F)}
+\DoxyCodeLine{00080\ \}logFlagType\_t;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ uint8\_t\ flag;}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ uint8\_t\ path\ :\ 1;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ uint8\_t\ nameFile\ :\ 1;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ uint8\_t\ line\ :1;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ uint8\_t\ date\ :\ 1;\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ uint8\_t\ :\ 4;}
+\DoxyCodeLine{00096\ \ \ \ \ \}f;}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \}\mbox{\hyperlink{unionflg_log__t}{flgLog\_t}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ LOG\_INFO(fmt,\ ...)\ log\_message(LOG\_INFO\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ LOG\_DEBUG(fmt,\ ...)\ log\_message(LOG\_DEBUG\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ LOG\_WARNING(fmt,\ ...)\ log\_message(LOG\_WARNING\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ LOG\_ERROR(fmt,\ ...)\ log\_message(LOG\_ERROR\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ LOG\_FATAL(fmt,\ ...)\ log\_message(LOG\_FATAL\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00139\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}}\ logType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{static}\ uint8\_t\ *getConfLog(\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}}\ logType);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00180\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__module_8h_af011428bfd841b079178aee63539f4df}{confLog}}(\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}}\ logType,\ logFlagType\_t\ config);}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_LOG\_MODULE\_H}}
+
+\end{DoxyCode}

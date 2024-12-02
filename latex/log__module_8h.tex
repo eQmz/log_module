@@ -1,0 +1,251 @@
+\doxysection{log\+\_\+module.\+h File Reference}
+\hypertarget{log__module_8h}{}\label{log__module_8h}\index{log\_module.h@{log\_module.h}}
+
+
+This library provides a base to make a simple LOG for different aplications @\+NOTE\+: The color of the LOG depends of the terminal or console. This take effect on systems based of UNIX.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}unistd.\+h"{}}\newline
+{\ttfamily \#include "{}stdarg.\+h"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include "{}stdint.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionflg_log__t}{flg\+Log\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em This is the bit field type to allocate the flags or LOG configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3}{LOG\+\_\+\+INFO}}(fmt, ...)
+\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for INFO LOG. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_ac06cfc686322558f590c50eab8622ebd}{LOG\+\_\+\+DEBUG}}(fmt, ...)
+\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for DEBUG LOG. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_afde44945335adc0c0ae2986fea13438f}{LOG\+\_\+\+WARNING}}(fmt, ...)
+\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for WARNING LOG. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78}{LOG\+\_\+\+ERROR}}(fmt, ...)
+\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for ERROR LOG. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_aa842d0e31b246c53e60d17b2d076e193}{LOG\+\_\+\+FATAL}}(fmt, ...)
+\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for FATAL LOG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{log__module_8h_ad32193f36f27b64a34f37c036315b507}\label{log__module_8h_ad32193f36f27b64a34f37c036315b507} 
+enum \mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}} \{ \newline
+{\bfseries LOG\+\_\+\+INFO\+\_\+T}
+, {\bfseries LOG\+\_\+\+DEBUG\+\_\+T}
+, {\bfseries LOG\+\_\+\+WARNING\+\_\+T}
+, {\bfseries LOG\+\_\+\+ERROR\+\_\+T}
+, \newline
+{\bfseries LOG\+\_\+\+FATAL\+\_\+T}
+, {\bfseries LOG\+\_\+\+UNSUPPORTED}
+ \}
+\begin{DoxyCompactList}\small\item\em This is the type to select the LOG type. \end{DoxyCompactList}\item 
+\Hypertarget{log__module_8h_aaf05bef91c6a4c8e25806e08e70ae184}\label{log__module_8h_aaf05bef91c6a4c8e25806e08e70ae184} 
+enum {\bfseries log\+Flag\+Type\+\_\+t} \{ \newline
+{\bfseries PATH\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0)
+, {\bfseries NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1)
+, {\bfseries LINE\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2)
+, {\bfseries DATE\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3)
+, \newline
+{\bfseries ALL\+\_\+\+DISABLED\+\_\+T} = (0x00)
+, {\bfseries ALL\+\_\+\+ENABLED\+\_\+T} = (0x0F)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\+\_\+message}} (\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}} log\+Type, const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em This is the abstraction function to generate the message for the differents LOGS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log__module_8h_af011428bfd841b079178aee63539f4df}{conf\+Log}} (\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}} log\+Type, log\+Flag\+Type\+\_\+t config)
+\begin{DoxyCompactList}\small\item\em This function sets the LOG configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This library provides a base to make a simple LOG for different aplications @\+NOTE\+: The color of the LOG depends of the terminal or console. This take effect on systems based of UNIX. 
+
+\begin{DoxyAuthor}{Author}
+EM2 (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/11-\/29
+\end{DoxyDate}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{log__module_8h}{log\_module.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *argv[])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_DEBUG\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_WARNING\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_ERROR\_T,\ PATH\_EN\_T);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3}{LOG\_INFO}}(\textcolor{stringliteral}{"{}This\ is\ an\ INFO\ message."{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_ac06cfc686322558f590c50eab8622ebd}{LOG\_DEBUG}}(\textcolor{stringliteral}{"{}This\ is\ a\ DEBUG\ message."{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_afde44945335adc0c0ae2986fea13438f}{LOG\_WARNING}}(\textcolor{stringliteral}{"{}This\ is\ a\ WARNING\ message."{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78}{LOG\_ERROR}}(\textcolor{stringliteral}{"{}This\ is\ an\ ERROR\ message."{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_aa842d0e31b246c53e60d17b2d076e193}{LOG\_FATAL}}(\textcolor{stringliteral}{"{}This\ is\ a\ FATAL\ message."{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Output:}
+\DoxyCodeLine{[INFO]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 10)\ [2024-\/12-\/02\ 09:57:11]:\ This\ is\ an\ INFO\ message.}
+\DoxyCodeLine{[DBG]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 11)\ :\ This\ is\ a\ DEBUG\ message.}
+\DoxyCodeLine{[WRN]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ :\ This\ is\ a\ WARNING\ message.}
+\DoxyCodeLine{[ERR]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\):\ This\ is\ an\ ERROR\ message.}
+\DoxyCodeLine{[FATAL]\ :\ This\ is\ a\ FATAL\ message.}
+
+\end{DoxyCode}
+ \begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{log__module_8h_ac06cfc686322558f590c50eab8622ebd}\index{log\_module.h@{log\_module.h}!LOG\_DEBUG@{LOG\_DEBUG}}
+\index{LOG\_DEBUG@{LOG\_DEBUG}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_DEBUG}{LOG\_DEBUG}}
+{\footnotesize\ttfamily \label{log__module_8h_ac06cfc686322558f590c50eab8622ebd} 
+\#define LOG\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_DEBUG\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+This is the MACRO fuctions for DEBUG LOG. 
+
+\Hypertarget{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78}\index{log\_module.h@{log\_module.h}!LOG\_ERROR@{LOG\_ERROR}}
+\index{LOG\_ERROR@{LOG\_ERROR}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_ERROR}{LOG\_ERROR}}
+{\footnotesize\ttfamily \label{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78} 
+\#define LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_ERROR\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+This is the MACRO fuctions for ERROR LOG. 
+
+\Hypertarget{log__module_8h_aa842d0e31b246c53e60d17b2d076e193}\index{log\_module.h@{log\_module.h}!LOG\_FATAL@{LOG\_FATAL}}
+\index{LOG\_FATAL@{LOG\_FATAL}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_FATAL}{LOG\_FATAL}}
+{\footnotesize\ttfamily \label{log__module_8h_aa842d0e31b246c53e60d17b2d076e193} 
+\#define LOG\+\_\+\+FATAL(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_FATAL\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+This is the MACRO fuctions for FATAL LOG. 
+
+\Hypertarget{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3}\index{log\_module.h@{log\_module.h}!LOG\_INFO@{LOG\_INFO}}
+\index{LOG\_INFO@{LOG\_INFO}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_INFO}{LOG\_INFO}}
+{\footnotesize\ttfamily \label{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3} 
+\#define LOG\+\_\+\+INFO(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_INFO\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+This is the MACRO fuctions for INFO LOG. 
+
+\Hypertarget{log__module_8h_afde44945335adc0c0ae2986fea13438f}\index{log\_module.h@{log\_module.h}!LOG\_WARNING@{LOG\_WARNING}}
+\index{LOG\_WARNING@{LOG\_WARNING}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_WARNING}{LOG\_WARNING}}
+{\footnotesize\ttfamily \label{log__module_8h_afde44945335adc0c0ae2986fea13438f} 
+\#define LOG\+\_\+\+WARNING(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_WARNING\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+This is the MACRO fuctions for WARNING LOG. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{log__module_8h_af011428bfd841b079178aee63539f4df}\index{log\_module.h@{log\_module.h}!confLog@{confLog}}
+\index{confLog@{confLog}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{confLog()}{confLog()}}
+{\footnotesize\ttfamily \label{log__module_8h_af011428bfd841b079178aee63539f4df} 
+void conf\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}}}]{log\+Type}{, }\item[{log\+Flag\+Type\+\_\+t}]{config}{}\end{DoxyParamCaption})}
+
+
+
+This function sets the LOG configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Type} & indicates the type of LOG to be configured. \\
+\hline
+{\em config} & this parameter contains the desired flag configurations. You could do several OR combination to select the different LOG options (PATH\+\_\+\+EN\+\_\+T, NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T, LINE\+\_\+\+EN\+\_\+T, DATE\+\_\+\+EN\+\_\+T)\\
+\hline
+\end{DoxyParams}
+Example to enables only shows the path and the name of the file where the LOG was called\+:
+
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T);
+
+To disable any configuration flag, you have to chosse again the configuration flags
+
+Example to disable path and the name of the file where the LOG was called, after these was configured\+:
+
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T)
+
+conf\+Log(\+LOG\+\_\+\+INFO\+\_\+\+T, DATE\+\_\+\+EN\+\_\+\+T)
+
+The line above only configurates the date when the LOG was called and it omits the rest of the flags.
+
+If you want to enable all configuration flags you have to use\+:
+
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LINE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} DATE\+\_\+\+EN\+\_\+T);
+
+or
+
+conf\+Log(\+LOG\+\_\+\+INFO\+\_\+\+T, ALL\+\_\+\+ENABLED\+\_\+\+T)
+
+On the other hand, if a LOG is not configured, all configuration flags are disabled for this LOG. \Hypertarget{log__module_8h_a23150f0002489958ddb2505123931378}\index{log\_module.h@{log\_module.h}!log\_message@{log\_message}}
+\index{log\_message@{log\_message}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{log\_message()}{log\_message()}}
+{\footnotesize\ttfamily \label{log__module_8h_a23150f0002489958ddb2505123931378} 
+void log\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}}}]{log\+Type}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+This is the abstraction function to generate the message for the differents LOGS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Type} & is the LOG type and indicates the context to use the LOG particularities. \\
+\hline
+{\em file} & is the file name where the LOG was called. \\
+\hline
+{\em line} & is the line number where the LOG was called. \\
+\hline
+{\em fmt} & this is the string format to print the data or message. \\
+\hline
+{\em ...} & these are the var parameters to be printed. \\
+\hline
+\end{DoxyParams}

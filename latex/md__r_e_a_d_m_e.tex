@@ -1,0 +1,92 @@
+\chapter{LOG\+\_\+\+MODULE}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{LOG\_MODULE@{LOG\_MODULE}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+This project is a library (log\+\_\+module.\+c/h files) which helps to generate a basic log to print different messages for different uses case like events, debug, warnings, errors, among others.
+
+The project purpose is to give an example or a base for a general log where the user adds more type of events or log cases at his convenience, e. g., a LOG type for \mbox{[}ALERT\mbox{]}, \mbox{[}EMERGENCY\mbox{]}, \mbox{[}SUCCESS\mbox{]}, \mbox{[}MODULE\+\_\+A\mbox{]}, \mbox{[}MODULE\+\_\+B\mbox{]}, and so on. It is important to clarify that the proyect has the uses cases or types of LOG labeled as\+: \mbox{[}INFO\mbox{]}, \mbox{[}DEBUG\mbox{]}, \mbox{[}WARNING\mbox{]}, \mbox{[}ERROR\mbox{]} and \mbox{[}FATAL\mbox{]}\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Example main.\+c code}{Example main.\+c code}}\label{md__r_e_a_d_m_e_autotoc_md1}
+The next code is an example of how the library can work\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include\ "{}log\_module.h"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{int\ main(int\ argc,\ char\ const\ *argv[])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_DEBUG\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_WARNING\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_ERROR\_T,\ PATH\_EN\_T);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ LOG\_INFO("{}This\ is\ an\ INFO\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_DEBUG("{}This\ is\ a\ DEBUG\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_WARNING("{}This\ is\ a\ WARNING\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_ERROR("{}This\ is\ an\ ERROR\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_FATAL("{}This\ is\ a\ FATAL\ message."{});}
+\DoxyCodeLine{\ \ \ \ return\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyEnumerate}
+\item To configure any LOG 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T);}
+\DoxyCodeLine{}
+\DoxyCodeLine{or}
+\DoxyCodeLine{}
+\DoxyCodeLine{confLog(LOG\_INFO\_T,\ ALL\_ENABLED\_T);}
+
+\end{DoxyCode}
+ \mbox{[}!\+NOTE\mbox{]} If you do not configure a LOG, the flags configuration for this log gets disabled.
+\item Use the MACRO function for the configured LOG 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{LOG\_INFO("{}This\ is\ an\ INFO\ message."{});}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+{\bfseries{Example output\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[INFO]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 10)\ [2024-\/12-\/02\ 09:57:11]:\ This\ is\ an\ INFO\ message.}
+\DoxyCodeLine{[DBG]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 11)\ :\ This\ is\ a\ DEBUG\ message.}
+\DoxyCodeLine{[WRN]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ :\ This\ is\ a\ WARNING\ message.}
+\DoxyCodeLine{[ERR]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\):\ This\ is\ an\ ERROR\ message.}
+\DoxyCodeLine{[FATAL]\ :\ This\ is\ a\ FATAL\ message.}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Compilation}{Compilation}}\label{md__r_e_a_d_m_e_autotoc_md2}
+First you have to download the library (or you can clone or add to your project as a submodule). The library location in your workspace should look as follows\+:
+
+
+
+Then, the next step for compilation it can be realized using the next gcc command on the terminal\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gcc\ -\/g\ main.c\ log\_module/log\_module.c\ -\/I\ log\_module\ -\/o\ main.exe}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Execution}{Execution}}\label{md__r_e_a_d_m_e_autotoc_md3}
+To excecute the main.\+exe file you can use the next command\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.\(\backslash\)main.exe}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Message}{Message}}\label{md__r_e_a_d_m_e_autotoc_md4}
+I hope you enjoy with this code, I know there are many ways to make a LOG with different features but I hope this example helps you.
+
+Remember that you can add different uses case and configure your own LOGS. These are useful to clasify the context of different messages. They help you to identify some code bugs or to see different events during execution of your proyect.
+
+And remember, use
+
+👍"{}\+Hello Dog! 🐶"{}
+
+Instead of
+
+✖️"{}\+Hello World!"{}
+
+ 

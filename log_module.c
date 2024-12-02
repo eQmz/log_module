@@ -54,7 +54,6 @@ void log_message(logType_t logType, const char *file, int line, const char *fmt,
     
 }
 
-
 static uint8_t *getConfLog(logType_t logType)
 {
     static uint8_t configLogs[LOG_UNSUPPORTED] = {0};
