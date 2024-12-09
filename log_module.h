@@ -128,6 +128,41 @@ typedef union
 #define LOG_FATAL(fmt, ...) log_message(LOG_FATAL_T, __FILE__, __LINE__, fmt, ##__VA_ARGS__)
 
 /**
+ * @brief This macro prints the branch and the commit of the module wich calls the macro
+ * 
+ */
+#define GIT_VERSION() printGitVersion(__FILE__)
+
+/**
+ * @brief This macro prints the branch and the commit of the log_module
+ * 
+ */
+#define GIT_VERSION_LOG() printGitVersionLOG()
+
+
+#define TEXT_BLUE           "\033[38;2;33;222;247m"
+#define TEXT_GREEN          "\033[38;2;74;252;210m"
+#define TEXT_YELLOW         "\033[38;2;255;254;114m"
+#define TEXT_ORAGE          "\033[38;2;255;153;0m"
+#define TEXT_RED            "\033[38;2;252;96;96m"
+#define TEXT_TURQUOISE      "\033[38;2;0;163;224m"
+#define TEXT_PURPLE         "\033[38;2;110;99;247m"
+#define TEXT_NAVY_BLUE      "\033[38;2;0;16;110m"
+#define TEXT_VINE           "\033[38;2;110;0;0m"
+
+#define BCKG_PURPLE         "\033[1;48;2;110;99;247m"
+#define BCKG_LILAC          "\033[1;48;2;205;98;248m"
+#define BCKG_L_LILAC    "\033[1;48;2;218;187;253m"
+#define BCKG_TURQUOISE      "\033[1;48;2;0;163;224m"
+#define BCKG_L_TURQUOISE      "\033[1;48;2;183;236;255m"
+#define BCKG_NAVY_BLUE      "\033[1;48;2;0;16;110m"
+#define BCKG_VINE           "\033[1;48;2;110;0;0m"
+#define BCKG_WHITE           "\033[1;48;2;255;255;255m"
+
+#define END_COLOR           "\033[0m"
+
+
+/**
  * @brief This is the abstraction function to generate the message for the differents LOGS.
  * 
  * @param logType is the LOG type and indicates the context to use the LOG particularities.
@@ -178,4 +213,8 @@ static uint8_t *getConfLog(logType_t logType);
  * On the other hand, if a LOG is not configured, all configuration flags are disabled for this LOG.
  */
 void confLog(logType_t logType, logFlagType_t config);
+
+static char* execute_command(const char* command);
+void printGitVersion(const char *file);
+void printGitVersionLOG(void);
 #endif //_LOG_MODULE_H
