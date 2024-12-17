@@ -1,10 +1,13 @@
 #include "log_module.h"
 
-void log_message(logType_t logType, const char *file, int line, const char *fmt, ...) {
+void log_message(logType_t logType, logTextColor_t color, logLabel_t label, char *file, int line, const char *fmt, va_list args) {
 
     uint8_t *auxconf = getConfLog(logType);
     flgLog_t configLogs = {.flag = *auxconf};
     
+    if(!configLogs.f.enable)
+        return;
+
     char time_buffer[26] = {'\0'};
     if(configLogs.f.date)
     {
@@ -15,8 +18,8 @@ void log_message(logType_t logType, const char *file, int line, const char *fmt,
         strftime(time_buffer, 26, "%Y-%m-%d %H:%M:%S", tm_info);  
     }
 
-    char *labelType[] = {"[INFO]", "[DBG]", "[WRN]", "[ERR]", "[FATAL]"};
-    char *labelColors[] = {"38;2;33;222;247m", "38;2;74;252;210m", "38;2;255;254;114m", "38;2;255;153;0m", "38;2;252;96;96m"}; //34 32 33 - 31
+    //char *labelType[] = {"[INFO]", "[DBG]", "[WRN]", "[ERR]", "[FATAL]"};
+    //char *labelColors[] = {"38;2;33;222;247m", "38;2;74;252;210m", "38;2;255;254;114m", "38;2;255;153;0m", "38;2;252;96;96m"}; //34 32 33 - 31
 
     //To get the actual path
     char cwd[1024] = {'\0'};
@@ -26,13 +29,13 @@ void log_message(logType_t logType, const char *file, int line, const char *fmt,
             perror("getcwd() error");
 
     //To make and print in LOG format
-    va_list args;
-    va_start(args, fmt);
+    // va_list args;
+    // va_start(args, fmt);
     
-        printf("\033[%s%s\033[0m ", labelColors[logType], labelType[logType]);
+        printf("\033[%s[%s]\033[0m ", colors[color], label);
         
         if(configLogs.f.path)
-        printf("%s\\", cwd);
+        printf("%s/", cwd);
         
         if(configLogs.f.nameFile)
         printf("\033[44;48;2;110;99;247m%s\033[0m ", file);
@@ -46,7 +49,7 @@ void log_message(logType_t logType, const char *file, int line, const char *fmt,
         printf(": ");  
 
         //To print the message or event in a desired format
-        printf("\033[1;%s",labelColors[logType]);
+        printf("\033[1;%s",colors[color]);
         vprintf(fmt, args);
         printf("\033[0m\n");
 
@@ -56,7 +59,7 @@ void log_message(logType_t logType, const char *file, int line, const char *fmt,
 
 static uint8_t *getConfLog(logType_t logType)
 {
-    static uint8_t configLogs[LOG_UNSUPPORTED] = {0};
+    static uint8_t configLogs[LOG_UNSUPPORTED] = { [0 ... LOG_UNSUPPORTED - 1] = 0x10 };
 
     return &configLogs[logType];
 }

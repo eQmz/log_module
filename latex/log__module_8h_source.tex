@@ -2,67 +2,170 @@
 \hypertarget{log__module_8h_source}{}\label{log__module_8h_source}\mbox{\hyperlink{log__module_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ LOG\_MODULE\_H}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LOG\_MODULE\_H}}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
-\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <string.h>}}
-\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}unistd.h"{}}\ \ \textcolor{comment}{//\ to\ use\ getcwd}}
-\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}stdarg.h"{}}\ \textcolor{comment}{//\ to\ use\ va\_start}}
-\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <time.h>}\ \ \ \textcolor{comment}{//To\ get\ the\ date}}
-\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
-\DoxyCodeLine{00055\ \{}
-\DoxyCodeLine{00056\ \ \ \ \ LOG\_INFO\_T,}
-\DoxyCodeLine{00057\ \ \ \ \ LOG\_DEBUG\_T,}
-\DoxyCodeLine{00058\ \ \ \ \ LOG\_WARNING\_T,}
-\DoxyCodeLine{00059\ \ \ \ \ LOG\_ERROR\_T,}
-\DoxyCodeLine{00060\ \ \ \ \ LOG\_FATAL\_T,}
-\DoxyCodeLine{00061\ \ \ \ \ LOG\_UNSUPPORTED}
-\DoxyCodeLine{00062\ \}\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}};}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
-\DoxyCodeLine{00073\ \{}
-\DoxyCodeLine{00074\ \ \ \ \ PATH\_EN\_T\ =\ (1\ <<\ 0),}
-\DoxyCodeLine{00075\ \ \ \ \ NAME\_FILE\_EN\_T\ =\ (1\ <<\ 1),\ \textcolor{comment}{//\ 0000\ 0010\ -\/>\ \string~1111\ 1101}}
-\DoxyCodeLine{00076\ \ \ \ \ LINE\_EN\_T\ =\ (1\ <<\ 2),}
-\DoxyCodeLine{00077\ \ \ \ \ DATE\_EN\_T\ =\ \ (1\ <<\ 3),}
-\DoxyCodeLine{00078\ \ \ \ \ ALL\_DISABLED\_T\ =\ \ (0x00),}
-\DoxyCodeLine{00079\ \ \ \ \ ALL\_ENABLED\_T\ =\ \ (0x0F)}
-\DoxyCodeLine{00080\ \}logFlagType\_t;}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00086\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union}}
-\DoxyCodeLine{00087\ \{}
-\DoxyCodeLine{00088\ \ \ \ \ uint8\_t\ flag;}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{struct\ }}
-\DoxyCodeLine{00090\ \ \ \ \ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ uint8\_t\ path\ :\ 1;}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ uint8\_t\ nameFile\ :\ 1;}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ uint8\_t\ line\ :1;}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ uint8\_t\ date\ :\ 1;\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ uint8\_t\ :\ 4;}
-\DoxyCodeLine{00096\ \ \ \ \ \}f;}
-\DoxyCodeLine{00097\ \ \ \ \ }
-\DoxyCodeLine{00098\ \}\mbox{\hyperlink{unionflg_log__t}{flgLog\_t}};}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ LOG\_INFO(fmt,\ ...)\ log\_message(LOG\_INFO\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ LOG\_DEBUG(fmt,\ ...)\ log\_message(LOG\_DEBUG\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ LOG\_WARNING(fmt,\ ...)\ log\_message(LOG\_WARNING\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ LOG\_ERROR(fmt,\ ...)\ log\_message(LOG\_ERROR\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ LOG\_FATAL(fmt,\ ...)\ log\_message(LOG\_FATAL\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00139\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}}\ logType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...);}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00147\ \textcolor{keyword}{static}\ uint8\_t\ *getConfLog(\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}}\ logType);}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00180\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__module_8h_af011428bfd841b079178aee63539f4df}{confLog}}(\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{logType\_t}}\ logType,\ logFlagType\_t\ config);}
-\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_LOG\_MODULE\_H}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#ifndef\ LOG\_MODULE\_H}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ LOG\_MODULE\_H}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#include\ "{}unistd.h"{}}\ \ \textcolor{comment}{//\ to\ use\ getcwd}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#include\ "{}stdarg.h"{}}\ \textcolor{comment}{//\ to\ use\ va\_start}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#include\ <time.h>}\ \ \ \textcolor{comment}{//To\ get\ the\ date}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ PATH\_EN\_T\ =\ (1\ <<\ 0),}
+\DoxyCodeLine{00158\ \ \ \ \ NAME\_FILE\_EN\_T\ =\ (1\ <<\ 1),\ \textcolor{comment}{//\ 0000\ 0010\ -\/>\ \string~1111\ 1101}}
+\DoxyCodeLine{00159\ \ \ \ \ LINE\_EN\_T\ =\ (1\ <<\ 2),}
+\DoxyCodeLine{00160\ \ \ \ \ DATE\_EN\_T\ =\ \ (1\ <<\ 3),}
+\DoxyCodeLine{00161\ \ \ \ \ LOG\_ENABLE\_T\ =\ \ (1\ <<\ 4),}
+\DoxyCodeLine{00162\ \ \ \ \ ALL\_DISABLED\_T\ =\ \ (0x00),}
+\DoxyCodeLine{00163\ \ \ \ \ ALL\_ENABLED\_T\ =\ \ (0x0F)}
+\DoxyCodeLine{00164\ \}logFlagType\_t;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union}}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ uint8\_t\ flag;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00174\ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ uint8\_t\ path\ :\ 1;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ uint8\_t\ nameFile\ :\ 1;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ uint8\_t\ line\ :1;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ uint8\_t\ date\ :\ 1;\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ uint8\_t\ enable\ :\ 1;\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ uint8\_t\ :\ 3;}
+\DoxyCodeLine{00181\ \ \ \ \ \}f;}
+\DoxyCodeLine{00182\ \ \ \ \ }
+\DoxyCodeLine{00183\ \}\mbox{\hyperlink{unionflg_log__t}{flgLog\_t}};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{typedef}\ uint8\_t\ \mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{logType\_t}};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{log__module_8h_aa591a210ec6b97bebde23481f7723018}{logLabel\_t}};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#define\ FL\ \_\_FILE\_\_,\ \_\_LINE\_\_}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#define\ CREATE\_LOG\_MACRO(name,\ color)\ \(\backslash\)}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \ \ static\ const\ logType\_t\ LOG\_\#\#name\#\#\_T\ =\ \_\_COUNTER\_\_;\ \(\backslash\)}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \ \ static\ const\ logLabel\_t\ LABEL\_\#\#name\ =\ \#name;\(\backslash\)}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\ \ \ \ static\ inline\ void\ LOG\_\#\#name(char\ *file,\ int\ line,\ const\ char\ *fmt,\ ...)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ va\_list\ args;\ \(\backslash\)}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ va\_start(args,\ fmt);\ \(\backslash\)}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ log\_message(LOG\_\#\#name\#\#\_T,\ color,\ LABEL\_\#\#name,\ file,\ line,\ fmt,\ args);\ \(\backslash\)}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ va\_end(args);\ \(\backslash\)}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ LOG\_UNSUPPORTED\ 120}}
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ static\ uint8\_t\ configLogs[LOG\_UNSUPPORTED]\ =\ \{\ [0\ ...\ LOG\_UNSUPPORTED\ -\/\ 1]\ =\ 0x10\ \};}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ GIT\_VERSION()\ printGitVersion(\_\_FILE\_\_)}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ GIT\_VERSION\_LOG()\ printGitVersionLOG()}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00245\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ TXT\_BLUE,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ TXT\_GREEN,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00248\ \ \ \ \ TXT\_YELLOW,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ TXT\_ORAGE,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ TXT\_RED,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00251\ \ \ \ \ TXT\_TURQUOISE,\ \ \ \ \ \ }
+\DoxyCodeLine{00252\ \ \ \ \ TXT\_PURPLE,\ }
+\DoxyCodeLine{00253\ \ \ \ \ TXT\_L\_TURQUOISE,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \ \ TXT\_NAVY\_BLUE,}
+\DoxyCodeLine{00255\ \ \ \ \ TXT\_GREEN\_DRK,\ \ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ TXT\_VINE,}
+\DoxyCodeLine{00257\ \ \ \ \ TXT\_WHITE,}
+\DoxyCodeLine{00258\ \ \ \ \ TXT\_PINK,}
+\DoxyCodeLine{00259\ \ \ \ \ TXT\_PINKL,}
+\DoxyCodeLine{00260\ \ \ \ \ TXT\_CYAN,}
+\DoxyCodeLine{00261\ \ \ \ \ TXT\_BROWN,}
+\DoxyCodeLine{00262\ \ \ \ \ TXT\_GRAY,}
+\DoxyCodeLine{00263\ \ \ \ \ TXT\_BLACK,}
+\DoxyCodeLine{00264\ \ \ \ \ TXT\_LILAC,}
+\DoxyCodeLine{00265\ \ \ \ \ TXT\_L\_LILAC\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \}\mbox{\hyperlink{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240}{logTextColor\_t}};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ TEXT\_BLUE\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;0;195;250m"{}}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ TEXT\_GREEN\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;74;252;210m"{}}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ TEXT\_YELLOW\ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;255;254;114m"{}}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ TEXT\_ORAGE\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;255;153;0m"{}}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ TEXT\_RED\ \ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;252;96;96m"{}}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ TEXT\_TURQUOISE\ \ \ \ \ \ "{}\(\backslash\)033[38;2;24;170;195m"{}}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ TEXT\_PURPLE\ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;110;99;247m"{}}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#define\ TEXT\_L\_TURQUOISE\ \ \ \ "{}\(\backslash\)033[38;2;33;222;247m"{}}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#define\ TEXT\_NAVY\_BLUE\ \ \ \ \ \ "{}\(\backslash\)033[38;2;0;120;255m"{}}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#define\ TEXT\_GREEN\_DRK\ \ \ \ \ \ "{}\(\backslash\)033[38;2;3;201;154m"{}}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#define\ TEXT\_VINE\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;215;2;80m"{}}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#define\ TEXT\_WHITE\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;255;255;255m"{}}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#define\ TEXT\_PINK\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;246;18;154m"{}}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#define\ TEXT\_PINKL\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;250;114;244m"{}}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ TEXT\_CYAN\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;2;240;240m"{}}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#define\ TEXT\_BROWN\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;201;128;99m"{}}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#define\ TEXT\_GRAY\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;180;180;180m"{}}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#define\ TEXT\_BLACK\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;0;0;0m"{}}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ TEXT\_LILAC\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;205;98;248m"{}}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ TEXT\_L\_LILAC\ \ \ \ \ \ \ \ "{}\(\backslash\)033[38;2;218;187;253m"{}}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ BCKG\_BLUE\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;33;222;247m"{}}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ BCKG\_GREEN\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;74;252;210m"{}}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ BCKG\_YELLOW\ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;255;254;114m"{}}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#define\ BCKG\_ORAGE\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;255;153;0m"{}}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ BCKG\_RED\ \ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;252;96;96m"{}}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ BCKG\_TURQUOISE\ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;0;163;224m"{}}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ BCKG\_PURPLE\ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;110;99;247m"{}}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ BCKG\_L\_TURQUOISE\ \ \ \ "{}\(\backslash\)033[1;48;2;66;202;234m"{}}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#define\ BCKG\_NAVY\_BLUE\ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;0;16;110m"{}}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ BCKG\_GREEN\_DRK\ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;3;201;154m"{}}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ BCKG\_VINE\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;110;0;0m"{}}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#define\ BCKG\_WHITE\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;255;255;255m"{}}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#define\ BCKG\_PINK\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1,48;2;246;18;154m"{}}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ BCKG\_PINKL\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1,48;2;250;114;244m"{}}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#define\ BCKG\_CYAN\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1,48;2;2;240;240m"{}}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ BCKG\_BROWN\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1,48;2;201;128;99m"{}}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ BCKG\_GRAY\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1,48;2;180;180;180m"{}}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ BCKG\_BLACK\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1,48;0;0;0;0m"{}}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ BCKG\_LILAC\ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;205;98;248m"{}}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#define\ BCKG\_L\_LILAC\ \ \ \ \ \ \ \ "{}\(\backslash\)033[1;48;2;218;187;253m"{}}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ END\_COLOR\ \ \ \ \ \ \ \ \ \ \ "{}\(\backslash\)033[0m"{}}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *colors[]\ =\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ TEXT\_BLUE,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00319\ \ \ \ \ TEXT\_GREEN,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00320\ \ \ \ \ TEXT\_YELLOW,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00321\ \ \ \ \ TEXT\_ORAGE,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00322\ \ \ \ \ TEXT\_RED,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00323\ \ \ \ \ TEXT\_TURQUOISE,\ \ \ \ \ \ }
+\DoxyCodeLine{00324\ \ \ \ \ TEXT\_PURPLE,\ \ }
+\DoxyCodeLine{00325\ \ \ \ \ TEXT\_L\_TURQUOISE,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00326\ \ \ \ \ TEXT\_NAVY\_BLUE,\ \ }
+\DoxyCodeLine{00327\ \ \ \ \ TEXT\_GREEN\_DRK,\ \ \ \ }
+\DoxyCodeLine{00328\ \ \ \ \ TEXT\_VINE,\ }
+\DoxyCodeLine{00329\ \ \ \ \ TEXT\_WHITE,}
+\DoxyCodeLine{00330\ \ \ \ \ TEXT\_PINK,}
+\DoxyCodeLine{00331\ \ \ \ \ TEXT\_PINKL,}
+\DoxyCodeLine{00332\ \ \ \ \ TEXT\_CYAN,}
+\DoxyCodeLine{00333\ \ \ \ \ TEXT\_BROWN,}
+\DoxyCodeLine{00334\ \ \ \ \ TEXT\_GRAY,}
+\DoxyCodeLine{00335\ \ \ \ \ TEXT\_BLACK,}
+\DoxyCodeLine{00336\ \ \ \ \ TEXT\_LILAC,}
+\DoxyCodeLine{00337\ \ \ \ \ TEXT\_L\_LILAC}
+\DoxyCodeLine{00338\ \ \ \ \ \};}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00351\ \textcolor{comment}{//void\ log\_message(logType\_t\ logType,\ const\ char\ *file,\ int\ line,\ const\ char\ *fmt,\ ...);}}
+\DoxyCodeLine{00352\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__module_8h_ab420c9204b90ce407825494140832ba5}{log\_message}}(\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{logType\_t}}\ logType,\ \mbox{\hyperlink{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240}{logTextColor\_t}}\ color,\ \mbox{\hyperlink{log__module_8h_aa591a210ec6b97bebde23481f7723018}{logLabel\_t}}\ label,\ \textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ va\_list\ args);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00360\ \textcolor{keyword}{static}\ uint8\_t\ *getConfLog(\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{logType\_t}}\ logType);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00393\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__module_8h_af011428bfd841b079178aee63539f4df}{confLog}}(\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{logType\_t}}\ logType,\ logFlagType\_t\ config);}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}*\ execute\_command(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ command);}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \textcolor{keywordtype}{void}\ printGitVersion(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file);}
+\DoxyCodeLine{00398\ \textcolor{keywordtype}{void}\ printGitVersionLOG(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_LOG\_MODULE\_H}}
 
 \end{DoxyCode}

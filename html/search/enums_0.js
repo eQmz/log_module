@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logtype_5ft_0',['logType_t',['../log__module_8h.html#ad32193f36f27b64a34f37c036315b507',1,'log_module.h']]]
+  ['logtextcolor_5ft_0',['logTextColor_t',['../log__module_8h.html#a4ca3707f86965e11982dd59d7d5b9240',1,'log_module.h']]]
 ];

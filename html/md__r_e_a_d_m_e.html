@@ -25,7 +25,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="lenguaje-c-1.png" height="100px"/></td>
+  <td id="projectlogo"><img alt="Logo" src=" lenguaje-c-1.png" height="100px"/></td>
   <td id="projectalign">
    <div id="projectname">log_module<span id="projectnumber">&#160;1.0</span>
    </div>
@@ -92,54 +92,152 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
 <p>This project is a library (log_module.c/h files) which helps to generate a basic log to print different messages for different uses case like events, debug, warnings, errors, among others.</p>
-<p>The project purpose is to give an example or a base for a general log where the user adds more type of events or log cases at his convenience, e. g., a LOG type for [ALERT], [EMERGENCY], [SUCCESS], [MODULE_A], [MODULE_B], and so on. It is important to clarify that the proyect has the uses cases or types of LOG labeled as: [INFO], [DEBUG], [WARNING], [ERROR] and [FATAL]</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Example main.c code</h1>
+<p>The project purpose is to give an example or a base for a general log creater, where the user can add his own at his convenience, e. g., a LOG type for [ALERT], [EMERGENCY], [SUCCESS], [MODULE_A], [MODULE_B], and so on.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Usage example</h2>
+<p>To use the library efficiently way, it is recommended to create an extra layer .h file (e.g., my_logs.h) where the logs could be created. That layer allows the use of any created log in any module or library that includes the layer.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Example of my_logs.h</h1>
+<div class="fragment"><div class="line">#ifndef _MY_LOGS_</div>
+<div class="line">#define _MY_LOGS_</div>
+<div class="line"> </div>
+<div class="line">#include &quot;log_module.h&quot;</div>
+<div class="line"> </div>
+<div class="line">CREATE_LOG_MACRO(USER, TXT_BLUE);</div>
+<div class="line">CREATE_LOG_MACRO(MODULE1, TXT_NAVY_BLUE);</div>
+<div class="line">CREATE_LOG_MACRO(MODULE2, TXT_PURPLE);</div>
+<div class="line">CREATE_LOG_MACRO(MODULE3, TXT_LILAC);</div>
+<div class="line">CREATE_LOG_MACRO(MODULE6, TXT_TURQUOISE);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT1, TXT_L_LILAC);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT2, TXT_GREEN_DRK);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT3, TXT_CYAN);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT4, TXT_BLACK);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT5, TXT_GRAY);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT6, TXT_BROWN);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT7, TXT_VINE);</div>
+<div class="line">CREATE_LOG_MACRO(EVENT8, TXT_WHITE);</div>
+<div class="line"> </div>
+<div class="line">CREATE_LOG_MACRO(INFO, TXT_L_TURQUOISE);</div>
+<div class="line">CREATE_LOG_MACRO(DEBUG, TXT_GREEN);</div>
+<div class="line">CREATE_LOG_MACRO(WARNING, TXT_YELLOW);</div>
+<div class="line">CREATE_LOG_MACRO(ERROR, TXT_ORAGE);</div>
+<div class="line">CREATE_LOG_MACRO(FATAL, TXT_RED);</div>
+<div class="line"> </div>
+<div class="line">#endif //_MY_LOGS_</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Example of main.c code</h1>
 <p>The next code is an example of how the library can work:</p>
-<div class="fragment"><div class="line">#include &quot;log_module.h&quot;</div>
+<div class="fragment"><div class="line">#include &quot;myLogs.h&quot;</div>
 <div class="line"> </div>
 <div class="line">int main(int argc, char const *argv[])</div>
-<div class="line">{</div>
-<div class="line">    confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T);</div>
-<div class="line">    confLog(LOG_DEBUG_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T);</div>
-<div class="line">    confLog(LOG_WARNING_T, PATH_EN_T | NAME_FILE_EN_T);</div>
-<div class="line">    confLog(LOG_ERROR_T, PATH_EN_T);</div>
+<div class="line">{ </div>
+<div class="line">    GIT_VERSION();</div>
+<div class="line">    GIT_VERSION_LOG();</div>
+<div class="line">    </div>
+<div class="line">    confLog(LOG_INFO_T, (PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T) | LOG_ENABLE_T);</div>
+<div class="line">    confLog(LOG_DEBUG_T, (PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T) | LOG_ENABLE_T);</div>
+<div class="line">    confLog(LOG_WARNING_T, PATH_EN_T | NAME_FILE_EN_T | LOG_ENABLE_T);</div>
+<div class="line">    confLog(LOG_ERROR_T, PATH_EN_T | LOG_ENABLE_T);</div>
 <div class="line"> </div>
-<div class="line">    LOG_INFO(&quot;This is an INFO message.&quot;);</div>
-<div class="line">    LOG_DEBUG(&quot;This is a DEBUG message.&quot;);</div>
-<div class="line">    LOG_WARNING(&quot;This is a WARNING message.&quot;);</div>
-<div class="line">    LOG_ERROR(&quot;This is an ERROR message.&quot;);</div>
-<div class="line">    LOG_FATAL(&quot;This is a FATAL message.&quot;);</div>
+<div class="line">    LOG_MODULE1(FL,&quot;This is a MODULE1 message.&quot;);</div>
+<div class="line">    LOG_USER(FL,&quot;dog.&quot;);</div>
+<div class="line">    LOG_MODULE6(FL,&quot;This is a MODULE1 message.&quot;);</div>
+<div class="line">    LOG_INFO(FL,&quot;This is an INFO message.&quot;);</div>
+<div class="line">    LOG_MODULE2(FL,&quot;This is a MODULE2 message.&quot;);</div>
+<div class="line">    LOG_MODULE3(FL,&quot;This is a MODULE3 message.&quot;);</div>
+<div class="line">    LOG_EVENT1(FL,&quot;This is a EVENT1 message.&quot;);</div>
+<div class="line">    LOG_EVENT2(FL,&quot;This is a EVENT2 message.&quot;);</div>
+<div class="line">    LOG_EVENT3(FL,&quot;This is a EVENT3 message.&quot;);</div>
+<div class="line">    LOG_DEBUG(FL,&quot;This is a DEBUG message.&quot;);</div>
+<div class="line">    LOG_EVENT4(FL,&quot;This is a EVENT4 message.&quot;);</div>
+<div class="line">    LOG_EVENT5(FL,&quot;This is a EVENT5 message.&quot;);</div>
+<div class="line">    LOG_EVENT6(FL,&quot;This is a EVENT6 message.&quot;);</div>
+<div class="line">    LOG_EVENT7(FL,&quot;This is a EVENT7 message.&quot;);</div>
+<div class="line">    LOG_EVENT8(FL,&quot;This is a EVENT8 message.\n&quot;);</div>
+<div class="line"> </div>
+<div class="line">    LOG_INFO(FL, &quot;This is a INFO message.&quot;);</div>
+<div class="line">    LOG_DEBUG(FL,&quot;This is a DEBUG message.&quot;);</div>
+<div class="line">    LOG_WARNING(FL,&quot;This is a WARNING message.&quot;);</div>
+<div class="line">    LOG_ERROR(FL,&quot;This is an ERROR message.&quot;);</div>
+<div class="line">    LOG_FATAL(FL,&quot;This is a FATAL message.&quot;);</div>
+<div class="line"> </div>
+<div class="line">    printf(&quot;Press Enter key to exit...&quot;);</div>
+<div class="line">    getchar();</div>
+<div class="line"> </div>
 <div class="line">    return 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --><ol type="1">
-<li>To configure any LOG <div class="fragment"><div class="line">confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T);</div>
+<li>To configure any LOG <div class="fragment"><div class="line">confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T | LOG_ENABLE_T);</div>
 <div class="line"> </div>
 <div class="line">or</div>
 <div class="line"> </div>
 <div class="line">confLog(LOG_INFO_T, ALL_ENABLED_T);</div>
-</div><!-- fragment --> [!NOTE] If you do not configure a LOG, the flags configuration for this log gets disabled.</li>
-<li>Use the MACRO function for the configured LOG <div class="fragment"><div class="line">LOG_INFO(&quot;This is an INFO message.&quot;);</div>
+</div><!-- fragment --> <blockquote class="doxtable">
+<p>&zwj;[!NOTE] If you do not configure a LOG, the flags configuration for this log gets disabled except LOG_ENABLE_T. </p>
+</blockquote>
+</li>
+<li>Use the MACRO function for the configured LOG. In addition, you should pass the MACRO LF to the first argument. <div class="fragment"><div class="line">LOG_INFO(LF, &quot;This is an INFO message.&quot;);</div>
+<div class="line"> </div>
+<div class="line">or </div>
+<div class="line"> </div>
+<div class="line">uint8_t value = 7; </div>
+<div class="line">LOG_INFO(LF, &quot;This is an INFO message. value: %d&quot;, value);</div>
 </div><!-- fragment --></li>
 </ol>
-<p><b>Example output:</b> </p><div class="fragment"><div class="line">[INFO] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\main.c (Line 10) [2024-12-02 09:57:11]: This is an INFO message.</div>
-<div class="line">[DBG] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\main.c (Line 11) : This is a DEBUG message.</div>
-<div class="line">[WRN] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\main.c : This is a WARNING message.</div>
-<div class="line">[ERR] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\: This is an ERROR message.</div>
+<p><b>Example output:</b> </p><div class="fragment"><div class="line">====================================================</div>
+<div class="line">            MODULE: main.c             </div>
+<div class="line">====================================================</div>
+<div class="line"> </div>
+<div class="line">[Branch: master]</div>
+<div class="line">[Commit: 5283f91e7d6fe2966c95b929cc672a35f793a555]</div>
+<div class="line"> </div>
+<div class="line">====================================================</div>
+<div class="line"> </div>
+<div class="line">====================================================</div>
+<div class="line">               MODULE: log_module                 </div>
+<div class="line">====================================================</div>
+<div class="line"> </div>
+<div class="line">[Branch: develop]</div>
+<div class="line">[Commit: d442018192b76a05441ed71469adf3a170292194]</div>
+<div class="line"> </div>
+<div class="line">====================================================</div>
+<div class="line"> </div>
+<div class="line">[MODULE1] : This is a MODULE1 message.</div>
+<div class="line">[USER] : dog.</div>
+<div class="line">[MODULE6] : This is a MODULE1 message.</div>
+<div class="line">[INFO] /mnt/c/Users/a_gc/Documents/Q/c/VS_CODE/LOG_test/ExampleLOG/main.c (Line 16) [2024-12-17 15:30:54]: This is an INFO message.  </div>
+<div class="line">[MODULE2] : This is a MODULE2 message.</div>
+<div class="line">[MODULE3] : This is a MODULE3 message.</div>
+<div class="line">[EVENT1] : This is a EVENT1 message.</div>
+<div class="line">[EVENT2] : This is a EVENT2 message.</div>
+<div class="line">[EVENT3] : This is a EVENT3 message.</div>
+<div class="line">[DEBUG] /mnt/c/Users/a_gc/Documents/Q/c/VS_CODE/LOG_test/ExampleLOG/main.c (Line 22) : This is a DEBUG message.</div>
+<div class="line">[EVENT4] : This is a EVENT4 message.</div>
+<div class="line">[EVENT5] : This is a EVENT5 message.</div>
+<div class="line">[EVENT6] : This is a EVENT6 message.</div>
+<div class="line">[EVENT7] : This is a EVENT7 message.</div>
+<div class="line">[EVENT8] : This is a EVENT8 message.</div>
+<div class="line"> </div>
+<div class="line">[INFO] /mnt/c/Users/a_gc/Documents/Q/c/VS_CODE/LOG_test/ExampleLOG/main.c (Line 30) [2024-12-17 15:30:54]: This is a INFO message.   </div>
+<div class="line">[DEBUG] /mnt/c/Users/a_gc/Documents/Q/c/VS_CODE/LOG_test/ExampleLOG/main.c (Line 31) : This is a DEBUG message.</div>
+<div class="line">[WARNING] /mnt/c/Users/a_gc/Documents/Q/c/VS_CODE/LOG_test/ExampleLOG/main.c : This is a WARNING message.</div>
+<div class="line">[ERROR] /mnt/c/Users/a_gc/Documents/Q/c/VS_CODE/LOG_test/ExampleLOG/: This is an ERROR message.</div>
 <div class="line">[FATAL] : This is a FATAL message.</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+<div class="line">Press Enter key to exit...</div>
+</div><!-- fragment --><p> <img src="image-1.png" alt="output1" class="inline"/> <img src="image-2.png" alt="output2" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Compilation</h1>
 <p>First you have to download the library (or you can clone or add to your project as a submodule). The library location in your workspace should look as follows:</p>
-<p><img src="image.png" alt="example_lib" class="inline"/></p>
+<p><img src="image-3.png" alt="example_lib" class="inline"/></p>
 <p>Then, the next step for compilation it can be realized using the next gcc command on the terminal:</p>
-<div class="fragment"><div class="line">gcc -g main.c log_module/log_module.c -I log_module -o main.exe</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+<div class="fragment"><div class="line">gcc -g main.c ./log_module/log_module.c -I log_module -o main.exe</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Execution</h1>
 <p>To excecute the main.exe file you can use the next command: </p><div class="fragment"><div class="line">.\main.exe</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
 Message</h1>
-<p>I hope you enjoy with this code, I know there are many ways to make a LOG with different features but I hope this example helps you.</p>
-<p>Remember that you can add different uses case and configure your own LOGS. These are useful to clasify the context of different messages. They help you to identify some code bugs or to see different events during execution of your proyect.</p>
+<p>I hope you enjoy this code, I know there are many ways to make a LOG with different features but I hope this example helps you.</p>
+<p>Remember that you can create different uses case and configure your own LOGS. These are useful to clasify the context of different messages. They help you to identify some code bugs or to see different events during the execution of your project.</p>
 <p>And remember, use</p>
 <p>👍"Hello Dog! 🐶"</p>
 <p>Instead of</p>
@@ -149,8 +247,7 @@ Message</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-<img class="footer" src="cursoCIntermedio.png"  height="100px"/>
-</small></address>
+<img class="footer" src="cursoCIntermedio.png"  height="100px"/></small></address>
 </div><!-- doc-content -->
 </body>
 </html>

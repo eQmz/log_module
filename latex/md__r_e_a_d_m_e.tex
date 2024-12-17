@@ -6,25 +6,80 @@
 
 This project is a library (log\+\_\+module.\+c/h files) which helps to generate a basic log to print different messages for different uses case like events, debug, warnings, errors, among others.
 
-The project purpose is to give an example or a base for a general log where the user adds more type of events or log cases at his convenience, e. g., a LOG type for \mbox{[}ALERT\mbox{]}, \mbox{[}EMERGENCY\mbox{]}, \mbox{[}SUCCESS\mbox{]}, \mbox{[}MODULE\+\_\+A\mbox{]}, \mbox{[}MODULE\+\_\+B\mbox{]}, and so on. It is important to clarify that the proyect has the uses cases or types of LOG labeled as\+: \mbox{[}INFO\mbox{]}, \mbox{[}DEBUG\mbox{]}, \mbox{[}WARNING\mbox{]}, \mbox{[}ERROR\mbox{]} and \mbox{[}FATAL\mbox{]}\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Example main.\+c code}{Example main.\+c code}}\label{md__r_e_a_d_m_e_autotoc_md1}
+The project purpose is to give an example or a base for a general log creater, where the user can add his own at his convenience, e. g., a LOG type for \mbox{[}ALERT\mbox{]}, \mbox{[}EMERGENCY\mbox{]}, \mbox{[}SUCCESS\mbox{]}, \mbox{[}MODULE\+\_\+A\mbox{]}, \mbox{[}MODULE\+\_\+B\mbox{]}, and so on.\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{\texorpdfstring{Usage example}{Usage example}}\label{md__r_e_a_d_m_e_autotoc_md1}
+To use the library efficiently way, it is recommended to create an extra layer .h file (e.\+g., my\+\_\+logs.\+h) where the logs could be created. That layer allows the use of any created log in any module or library that includes the layer.\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Example of my\+\_\+logs.\+h}{Example of my\+\_\+logs.\+h}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#ifndef\ \_MY\_LOGS\_}
+\DoxyCodeLine{\#define\ \_MY\_LOGS\_}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#include\ "{}log\_module.h"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(USER,\ TXT\_BLUE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE1,\ TXT\_NAVY\_BLUE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE2,\ TXT\_PURPLE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE3,\ TXT\_LILAC);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE6,\ TXT\_TURQUOISE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT1,\ TXT\_L\_LILAC);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT2,\ TXT\_GREEN\_DRK);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT3,\ TXT\_CYAN);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT4,\ TXT\_BLACK);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT5,\ TXT\_GRAY);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT6,\ TXT\_BROWN);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT7,\ TXT\_VINE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT8,\ TXT\_WHITE);}
+\DoxyCodeLine{}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(INFO,\ TXT\_L\_TURQUOISE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(DEBUG,\ TXT\_GREEN);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(WARNING,\ TXT\_YELLOW);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(ERROR,\ TXT\_ORAGE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(FATAL,\ TXT\_RED);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#endif\ //\_MY\_LOGS\_}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Example of main.\+c code}{Example of main.\+c code}}\label{md__r_e_a_d_m_e_autotoc_md3}
 The next code is an example of how the library can work\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\#include\ "{}log\_module.h"{}}
+\DoxyCodeLine{\#include\ "{}myLogs.h"{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{int\ main(int\ argc,\ char\ const\ *argv[])}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T);}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_DEBUG\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T);}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_WARNING\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T);}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_ERROR\_T,\ PATH\_EN\_T);}
+\DoxyCodeLine{\{\ }
+\DoxyCodeLine{\ \ \ \ GIT\_VERSION();}
+\DoxyCodeLine{\ \ \ \ GIT\_VERSION\_LOG();}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_INFO\_T,\ (PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T)\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_DEBUG\_T,\ (PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T)\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_WARNING\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_ERROR\_T,\ PATH\_EN\_T\ |\ LOG\_ENABLE\_T);}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \ \ LOG\_INFO("{}This\ is\ an\ INFO\ message."{});}
-\DoxyCodeLine{\ \ \ \ LOG\_DEBUG("{}This\ is\ a\ DEBUG\ message."{});}
-\DoxyCodeLine{\ \ \ \ LOG\_WARNING("{}This\ is\ a\ WARNING\ message."{});}
-\DoxyCodeLine{\ \ \ \ LOG\_ERROR("{}This\ is\ an\ ERROR\ message."{});}
-\DoxyCodeLine{\ \ \ \ LOG\_FATAL("{}This\ is\ a\ FATAL\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE1(FL,"{}This\ is\ a\ MODULE1\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_USER(FL,"{}dog."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE6(FL,"{}This\ is\ a\ MODULE1\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_INFO(FL,"{}This\ is\ an\ INFO\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE2(FL,"{}This\ is\ a\ MODULE2\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE3(FL,"{}This\ is\ a\ MODULE3\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT1(FL,"{}This\ is\ a\ EVENT1\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT2(FL,"{}This\ is\ a\ EVENT2\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT3(FL,"{}This\ is\ a\ EVENT3\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_DEBUG(FL,"{}This\ is\ a\ DEBUG\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT4(FL,"{}This\ is\ a\ EVENT4\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT5(FL,"{}This\ is\ a\ EVENT5\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT6(FL,"{}This\ is\ a\ EVENT6\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT7(FL,"{}This\ is\ a\ EVENT7\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT8(FL,"{}This\ is\ a\ EVENT8\ message.\(\backslash\)n"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ LOG\_INFO(FL,\ "{}This\ is\ a\ INFO\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_DEBUG(FL,"{}This\ is\ a\ DEBUG\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_WARNING(FL,"{}This\ is\ a\ WARNING\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_ERROR(FL,"{}This\ is\ an\ ERROR\ message."{});}
+\DoxyCodeLine{\ \ \ \ LOG\_FATAL(FL,"{}This\ is\ a\ FATAL\ message."{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ printf("{}Press\ Enter\ key\ to\ exit..."{});}
+\DoxyCodeLine{\ \ \ \ getchar();}
+\DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ return\ 0;}
 \DoxyCodeLine{\}}
 
@@ -33,17 +88,24 @@ The next code is an example of how the library can work\+:
 \begin{DoxyEnumerate}
 \item To configure any LOG 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T);}
+\DoxyCodeLine{confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T\ |\ LOG\_ENABLE\_T);}
 \DoxyCodeLine{}
 \DoxyCodeLine{or}
 \DoxyCodeLine{}
 \DoxyCodeLine{confLog(LOG\_INFO\_T,\ ALL\_ENABLED\_T);}
 
 \end{DoxyCode}
- \mbox{[}!\+NOTE\mbox{]} If you do not configure a LOG, the flags configuration for this log gets disabled.
-\item Use the MACRO function for the configured LOG 
+ \begin{quote}
+\mbox{[}!\+NOTE\mbox{]} If you do not configure a LOG, the flags configuration for this log gets disabled except LOG\+\_\+\+ENABLE\+\_\+T. \end{quote}
+
+\item Use the MACRO function for the configured LOG. In addition, you should pass the MACRO LF to the first argument. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{LOG\_INFO("{}This\ is\ an\ INFO\ message."{});}
+\DoxyCodeLine{LOG\_INFO(LF,\ "{}This\ is\ an\ INFO\ message."{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{or\ }
+\DoxyCodeLine{}
+\DoxyCodeLine{uint8\_t\ value\ =\ 7;\ }
+\DoxyCodeLine{LOG\_INFO(LF,\ "{}This\ is\ an\ INFO\ message.\ value:\ \%d"{},\ value);}
 
 \end{DoxyCode}
 
@@ -51,14 +113,49 @@ The next code is an example of how the library can work\+:
 
 {\bfseries{Example output\+:}} 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{[INFO]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 10)\ [2024-\/12-\/02\ 09:57:11]:\ This\ is\ an\ INFO\ message.}
-\DoxyCodeLine{[DBG]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 11)\ :\ This\ is\ a\ DEBUG\ message.}
-\DoxyCodeLine{[WRN]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ :\ This\ is\ a\ WARNING\ message.}
-\DoxyCodeLine{[ERR]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\):\ This\ is\ an\ ERROR\ message.}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ MODULE:\ main.c\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{[Branch:\ master]}
+\DoxyCodeLine{[Commit:\ 5283f91e7d6fe2966c95b929cc672a35f793a555]}
+\DoxyCodeLine{}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MODULE:\ log\_module\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{[Branch:\ develop]}
+\DoxyCodeLine{[Commit:\ d442018192b76a05441ed71469adf3a170292194]}
+\DoxyCodeLine{}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{[MODULE1]\ :\ This\ is\ a\ MODULE1\ message.}
+\DoxyCodeLine{[USER]\ :\ dog.}
+\DoxyCodeLine{[MODULE6]\ :\ This\ is\ a\ MODULE1\ message.}
+\DoxyCodeLine{[INFO]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 16)\ [2024-\/12-\/17\ 15:30:54]:\ This\ is\ an\ INFO\ message.\ \ }
+\DoxyCodeLine{[MODULE2]\ :\ This\ is\ a\ MODULE2\ message.}
+\DoxyCodeLine{[MODULE3]\ :\ This\ is\ a\ MODULE3\ message.}
+\DoxyCodeLine{[EVENT1]\ :\ This\ is\ a\ EVENT1\ message.}
+\DoxyCodeLine{[EVENT2]\ :\ This\ is\ a\ EVENT2\ message.}
+\DoxyCodeLine{[EVENT3]\ :\ This\ is\ a\ EVENT3\ message.}
+\DoxyCodeLine{[DEBUG]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 22)\ :\ This\ is\ a\ DEBUG\ message.}
+\DoxyCodeLine{[EVENT4]\ :\ This\ is\ a\ EVENT4\ message.}
+\DoxyCodeLine{[EVENT5]\ :\ This\ is\ a\ EVENT5\ message.}
+\DoxyCodeLine{[EVENT6]\ :\ This\ is\ a\ EVENT6\ message.}
+\DoxyCodeLine{[EVENT7]\ :\ This\ is\ a\ EVENT7\ message.}
+\DoxyCodeLine{[EVENT8]\ :\ This\ is\ a\ EVENT8\ message.}
+\DoxyCodeLine{}
+\DoxyCodeLine{[INFO]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 30)\ [2024-\/12-\/17\ 15:30:54]:\ This\ is\ a\ INFO\ message.\ \ \ }
+\DoxyCodeLine{[DEBUG]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 31)\ :\ This\ is\ a\ DEBUG\ message.}
+\DoxyCodeLine{[WARNING]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ :\ This\ is\ a\ WARNING\ message.}
+\DoxyCodeLine{[ERROR]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/:\ This\ is\ an\ ERROR\ message.}
 \DoxyCodeLine{[FATAL]\ :\ This\ is\ a\ FATAL\ message.}
+\DoxyCodeLine{Press\ Enter\ key\ to\ exit...}
 
 \end{DoxyCode}
-\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Compilation}{Compilation}}\label{md__r_e_a_d_m_e_autotoc_md2}
+  \hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Compilation}{Compilation}}\label{md__r_e_a_d_m_e_autotoc_md4}
 First you have to download the library (or you can clone or add to your project as a submodule). The library location in your workspace should look as follows\+:
 
 
@@ -67,19 +164,19 @@ Then, the next step for compilation it can be realized using the next gcc comman
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{gcc\ -\/g\ main.c\ log\_module/log\_module.c\ -\/I\ log\_module\ -\/o\ main.exe}
+\DoxyCodeLine{gcc\ -\/g\ main.c\ ./log\_module/log\_module.c\ -\/I\ log\_module\ -\/o\ main.exe}
 
 \end{DoxyCode}
-\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Execution}{Execution}}\label{md__r_e_a_d_m_e_autotoc_md3}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{\texorpdfstring{Execution}{Execution}}\label{md__r_e_a_d_m_e_autotoc_md5}
 To excecute the main.\+exe file you can use the next command\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{.\(\backslash\)main.exe}
 
 \end{DoxyCode}
-\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Message}{Message}}\label{md__r_e_a_d_m_e_autotoc_md4}
-I hope you enjoy with this code, I know there are many ways to make a LOG with different features but I hope this example helps you.
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Message}{Message}}\label{md__r_e_a_d_m_e_autotoc_md6}
+I hope you enjoy this code, I know there are many ways to make a LOG with different features but I hope this example helps you.
 
-Remember that you can add different uses case and configure your own LOGS. These are useful to clasify the context of different messages. They help you to identify some code bugs or to see different events during execution of your proyect.
+Remember that you can create different uses case and configure your own LOGS. These are useful to clasify the context of different messages. They help you to identify some code bugs or to see different events during the execution of your project.
 
 And remember, use
 

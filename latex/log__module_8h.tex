@@ -2,7 +2,7 @@
 \hypertarget{log__module_8h}{}\label{log__module_8h}\index{log\_module.h@{log\_module.h}}
 
 
-This library provides a base to make a simple LOG for different aplications @\+NOTE\+: The color of the LOG depends of the terminal or console. This take effect on systems based of UNIX.  
+This library provides a base to make a simple LOG for different aplications @\+NOTE\+: The color of the LOG depends of the terminal or console. It takes effect on systems based of UNIX.  
 
 
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
@@ -20,30 +20,152 @@ union \mbox{\hyperlink{unionflg_log__t}{flg\+Log\+\_\+t}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3}{LOG\+\_\+\+INFO}}(fmt, ...)
-\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for INFO LOG. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{log__module_8h_ac06cfc686322558f590c50eab8622ebd}{LOG\+\_\+\+DEBUG}}(fmt, ...)
-\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for DEBUG LOG. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{log__module_8h_afde44945335adc0c0ae2986fea13438f}{LOG\+\_\+\+WARNING}}(fmt, ...)
-\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for WARNING LOG. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78}{LOG\+\_\+\+ERROR}}(fmt, ...)
-\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for ERROR LOG. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{log__module_8h_aa842d0e31b246c53e60d17b2d076e193}{LOG\+\_\+\+FATAL}}(fmt, ...)
-\begin{DoxyCompactList}\small\item\em This is the MACRO fuctions for FATAL LOG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}}~\+\_\+\+\_\+\+FILE\+\_\+\+\_\+, \+\_\+\+\_\+\+LINE\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em This MACRO was created to pass the current line and file where the LOG was called It must be used with every created LOG. For instance, if you created the LOG named USER, it should be used as follows\+: \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_a39d445cdfa877da3e12654761a6b36bf}{CREATE\+\_\+\+LOG\+\_\+\+MACRO}}(name,  color)
+\item 
+\Hypertarget{log__module_8h_abd6411c77ebe21279e2bf74aac9b0f6c}\label{log__module_8h_abd6411c77ebe21279e2bf74aac9b0f6c} 
+\#define {\bfseries LOG\+\_\+\+UNSUPPORTED}~120
+\begin{DoxyCompactList}\small\item\em It defines the max number of LOGS that could be created. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_a00fc9d4bb97208570d2ae4d4e658d56c}{GIT\+\_\+\+VERSION}}()
+\begin{DoxyCompactList}\small\item\em This macro prints the branch and the commit of the module wich calls the macro. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{log__module_8h_a7a1774fd4ea32240858c457788699b4a}{GIT\+\_\+\+VERSION\+\_\+\+LOG}}()
+\begin{DoxyCompactList}\small\item\em This macro prints the branch and the commit of the log\+\_\+module. \end{DoxyCompactList}\item 
+\Hypertarget{log__module_8h_a6e402ca4f48eba3f31db597c712dfa67}\label{log__module_8h_a6e402ca4f48eba3f31db597c712dfa67} 
+\#define {\bfseries TEXT\+\_\+\+BLUE}~"{}\textbackslash{}033\mbox{[}38;2;0;195;250m"{}
+\item 
+\Hypertarget{log__module_8h_a0f72072a891489b733a5262eeda0908d}\label{log__module_8h_a0f72072a891489b733a5262eeda0908d} 
+\#define {\bfseries TEXT\+\_\+\+GREEN}~"{}\textbackslash{}033\mbox{[}38;2;74;252;210m"{}
+\item 
+\Hypertarget{log__module_8h_a6e7e7b1c182f7189d6ac92f610209446}\label{log__module_8h_a6e7e7b1c182f7189d6ac92f610209446} 
+\#define {\bfseries TEXT\+\_\+\+YELLOW}~"{}\textbackslash{}033\mbox{[}38;2;255;254;114m"{}
+\item 
+\Hypertarget{log__module_8h_a3020ce039c994636a1702cf1fe61b6de}\label{log__module_8h_a3020ce039c994636a1702cf1fe61b6de} 
+\#define {\bfseries TEXT\+\_\+\+ORAGE}~"{}\textbackslash{}033\mbox{[}38;2;255;153;0m"{}
+\item 
+\Hypertarget{log__module_8h_a555a70bc0055a01ffe22773b65592275}\label{log__module_8h_a555a70bc0055a01ffe22773b65592275} 
+\#define {\bfseries TEXT\+\_\+\+RED}~"{}\textbackslash{}033\mbox{[}38;2;252;96;96m"{}
+\item 
+\Hypertarget{log__module_8h_add0425064bfac4c97fd1ea707fe60eb7}\label{log__module_8h_add0425064bfac4c97fd1ea707fe60eb7} 
+\#define {\bfseries TEXT\+\_\+\+TURQUOISE}~"{}\textbackslash{}033\mbox{[}38;2;24;170;195m"{}
+\item 
+\Hypertarget{log__module_8h_a1b2bed848a70ee368631462ec01a4b3a}\label{log__module_8h_a1b2bed848a70ee368631462ec01a4b3a} 
+\#define {\bfseries TEXT\+\_\+\+PURPLE}~"{}\textbackslash{}033\mbox{[}38;2;110;99;247m"{}
+\item 
+\Hypertarget{log__module_8h_a587a2db1b5f687491ef4ed15d500bd85}\label{log__module_8h_a587a2db1b5f687491ef4ed15d500bd85} 
+\#define {\bfseries TEXT\+\_\+\+L\+\_\+\+TURQUOISE}~"{}\textbackslash{}033\mbox{[}38;2;33;222;247m"{}
+\item 
+\Hypertarget{log__module_8h_a1d5f3be0f18635949def2a8f0a871786}\label{log__module_8h_a1d5f3be0f18635949def2a8f0a871786} 
+\#define {\bfseries TEXT\+\_\+\+NAVY\+\_\+\+BLUE}~"{}\textbackslash{}033\mbox{[}38;2;0;120;255m"{}
+\item 
+\Hypertarget{log__module_8h_abb4859f15d45987a64862c6d23d25419}\label{log__module_8h_abb4859f15d45987a64862c6d23d25419} 
+\#define {\bfseries TEXT\+\_\+\+GREEN\+\_\+\+DRK}~"{}\textbackslash{}033\mbox{[}38;2;3;201;154m"{}
+\item 
+\Hypertarget{log__module_8h_a207ecf18ea0b7853190f947c81f1d2db}\label{log__module_8h_a207ecf18ea0b7853190f947c81f1d2db} 
+\#define {\bfseries TEXT\+\_\+\+VINE}~"{}\textbackslash{}033\mbox{[}38;2;215;2;80m"{}
+\item 
+\Hypertarget{log__module_8h_ab092d2c9b684d6aea800b49e212a3244}\label{log__module_8h_ab092d2c9b684d6aea800b49e212a3244} 
+\#define {\bfseries TEXT\+\_\+\+WHITE}~"{}\textbackslash{}033\mbox{[}38;2;255;255;255m"{}
+\item 
+\Hypertarget{log__module_8h_a56e0dc8abe6e03220ef69db64091a125}\label{log__module_8h_a56e0dc8abe6e03220ef69db64091a125} 
+\#define {\bfseries TEXT\+\_\+\+PINK}~"{}\textbackslash{}033\mbox{[}38;2;246;18;154m"{}
+\item 
+\Hypertarget{log__module_8h_aabb07c5714c88ab037a8298754e691b0}\label{log__module_8h_aabb07c5714c88ab037a8298754e691b0} 
+\#define {\bfseries TEXT\+\_\+\+PINKL}~"{}\textbackslash{}033\mbox{[}38;2;250;114;244m"{}
+\item 
+\Hypertarget{log__module_8h_a07402d6cbc33a05c66021319a9557e7d}\label{log__module_8h_a07402d6cbc33a05c66021319a9557e7d} 
+\#define {\bfseries TEXT\+\_\+\+CYAN}~"{}\textbackslash{}033\mbox{[}38;2;2;240;240m"{}
+\item 
+\Hypertarget{log__module_8h_aa600fdff91444e7693a0897b30e43cd8}\label{log__module_8h_aa600fdff91444e7693a0897b30e43cd8} 
+\#define {\bfseries TEXT\+\_\+\+BROWN}~"{}\textbackslash{}033\mbox{[}38;2;201;128;99m"{}
+\item 
+\Hypertarget{log__module_8h_a799e4d1d2c318c8959b8a962664f734d}\label{log__module_8h_a799e4d1d2c318c8959b8a962664f734d} 
+\#define {\bfseries TEXT\+\_\+\+GRAY}~"{}\textbackslash{}033\mbox{[}38;2;180;180;180m"{}
+\item 
+\Hypertarget{log__module_8h_ad5ffb484c291e4fe9ad9d17b58511316}\label{log__module_8h_ad5ffb484c291e4fe9ad9d17b58511316} 
+\#define {\bfseries TEXT\+\_\+\+BLACK}~"{}\textbackslash{}033\mbox{[}38;2;0;0;0m"{}
+\item 
+\Hypertarget{log__module_8h_a757d07ed052cdfe6bbe935770124c8be}\label{log__module_8h_a757d07ed052cdfe6bbe935770124c8be} 
+\#define {\bfseries TEXT\+\_\+\+LILAC}~"{}\textbackslash{}033\mbox{[}38;2;205;98;248m"{}
+\item 
+\Hypertarget{log__module_8h_a95a7b87fd949537e9ffb6577baf70807}\label{log__module_8h_a95a7b87fd949537e9ffb6577baf70807} 
+\#define {\bfseries TEXT\+\_\+\+L\+\_\+\+LILAC}~"{}\textbackslash{}033\mbox{[}38;2;218;187;253m"{}
+\item 
+\Hypertarget{log__module_8h_adce6fd63525b174de5c9ea4ff143f4d9}\label{log__module_8h_adce6fd63525b174de5c9ea4ff143f4d9} 
+\#define {\bfseries BCKG\+\_\+\+BLUE}~"{}\textbackslash{}033\mbox{[}1;48;2;33;222;247m"{}
+\item 
+\Hypertarget{log__module_8h_a05aaadb9797151d5e30a7706dae938a6}\label{log__module_8h_a05aaadb9797151d5e30a7706dae938a6} 
+\#define {\bfseries BCKG\+\_\+\+GREEN}~"{}\textbackslash{}033\mbox{[}1;48;2;74;252;210m"{}
+\item 
+\Hypertarget{log__module_8h_aeb010dabbb6656d1def6a9152d42fac6}\label{log__module_8h_aeb010dabbb6656d1def6a9152d42fac6} 
+\#define {\bfseries BCKG\+\_\+\+YELLOW}~"{}\textbackslash{}033\mbox{[}1;48;2;255;254;114m"{}
+\item 
+\Hypertarget{log__module_8h_ae16c34fcc79f9b01eec9998ed0c688de}\label{log__module_8h_ae16c34fcc79f9b01eec9998ed0c688de} 
+\#define {\bfseries BCKG\+\_\+\+ORAGE}~"{}\textbackslash{}033\mbox{[}1;48;2;255;153;0m"{}
+\item 
+\Hypertarget{log__module_8h_a46256d0bf5f3983ef20906f01487700f}\label{log__module_8h_a46256d0bf5f3983ef20906f01487700f} 
+\#define {\bfseries BCKG\+\_\+\+RED}~"{}\textbackslash{}033\mbox{[}1;48;2;252;96;96m"{}
+\item 
+\Hypertarget{log__module_8h_af34b5cf9b2f74abc27bb2567d0d4737e}\label{log__module_8h_af34b5cf9b2f74abc27bb2567d0d4737e} 
+\#define {\bfseries BCKG\+\_\+\+TURQUOISE}~"{}\textbackslash{}033\mbox{[}1;48;2;0;163;224m"{}
+\item 
+\Hypertarget{log__module_8h_a9eef373dbac7b0b47fda69620372e784}\label{log__module_8h_a9eef373dbac7b0b47fda69620372e784} 
+\#define {\bfseries BCKG\+\_\+\+PURPLE}~"{}\textbackslash{}033\mbox{[}1;48;2;110;99;247m"{}
+\item 
+\Hypertarget{log__module_8h_a3e1ce97297f06c4dad0ee48d94b44be0}\label{log__module_8h_a3e1ce97297f06c4dad0ee48d94b44be0} 
+\#define {\bfseries BCKG\+\_\+\+L\+\_\+\+TURQUOISE}~"{}\textbackslash{}033\mbox{[}1;48;2;66;202;234m"{}
+\item 
+\Hypertarget{log__module_8h_a2faff2e6983994e86bc14d13fe8bdc33}\label{log__module_8h_a2faff2e6983994e86bc14d13fe8bdc33} 
+\#define {\bfseries BCKG\+\_\+\+NAVY\+\_\+\+BLUE}~"{}\textbackslash{}033\mbox{[}1;48;2;0;16;110m"{}
+\item 
+\Hypertarget{log__module_8h_a19e5d46ac015724a1a4527f1b0556fef}\label{log__module_8h_a19e5d46ac015724a1a4527f1b0556fef} 
+\#define {\bfseries BCKG\+\_\+\+GREEN\+\_\+\+DRK}~"{}\textbackslash{}033\mbox{[}1;48;2;3;201;154m"{}
+\item 
+\Hypertarget{log__module_8h_a1f2c2dafeea32830a187d46d133374f1}\label{log__module_8h_a1f2c2dafeea32830a187d46d133374f1} 
+\#define {\bfseries BCKG\+\_\+\+VINE}~"{}\textbackslash{}033\mbox{[}1;48;2;110;0;0m"{}
+\item 
+\Hypertarget{log__module_8h_a121c8b7368f73c4e28c059cc1e47d6a7}\label{log__module_8h_a121c8b7368f73c4e28c059cc1e47d6a7} 
+\#define {\bfseries BCKG\+\_\+\+WHITE}~"{}\textbackslash{}033\mbox{[}1;48;2;255;255;255m"{}
+\item 
+\Hypertarget{log__module_8h_a8bbcdf7d0f5951bc32ad8e4522d1f40b}\label{log__module_8h_a8bbcdf7d0f5951bc32ad8e4522d1f40b} 
+\#define {\bfseries BCKG\+\_\+\+PINK}~"{}\textbackslash{}033\mbox{[}1,48;2;246;18;154m"{}
+\item 
+\Hypertarget{log__module_8h_aed7e000ea786ca1692ae15e5e2326409}\label{log__module_8h_aed7e000ea786ca1692ae15e5e2326409} 
+\#define {\bfseries BCKG\+\_\+\+PINKL}~"{}\textbackslash{}033\mbox{[}1,48;2;250;114;244m"{}
+\item 
+\Hypertarget{log__module_8h_a1fb3f9c1d5edd80982d708b735d59a05}\label{log__module_8h_a1fb3f9c1d5edd80982d708b735d59a05} 
+\#define {\bfseries BCKG\+\_\+\+CYAN}~"{}\textbackslash{}033\mbox{[}1,48;2;2;240;240m"{}
+\item 
+\Hypertarget{log__module_8h_a8b4f3d3cf89488f18cc78ca7026f7210}\label{log__module_8h_a8b4f3d3cf89488f18cc78ca7026f7210} 
+\#define {\bfseries BCKG\+\_\+\+BROWN}~"{}\textbackslash{}033\mbox{[}1,48;2;201;128;99m"{}
+\item 
+\Hypertarget{log__module_8h_ad4fcd70be7d2e8e3afdc4f7c4300541a}\label{log__module_8h_ad4fcd70be7d2e8e3afdc4f7c4300541a} 
+\#define {\bfseries BCKG\+\_\+\+GRAY}~"{}\textbackslash{}033\mbox{[}1,48;2;180;180;180m"{}
+\item 
+\Hypertarget{log__module_8h_ac62bcdffa88c704e791e544dcb845621}\label{log__module_8h_ac62bcdffa88c704e791e544dcb845621} 
+\#define {\bfseries BCKG\+\_\+\+BLACK}~"{}\textbackslash{}033\mbox{[}1,48;0;0;0;0m"{}
+\item 
+\Hypertarget{log__module_8h_a575cc6e8c5717c4e7592cd6a3a25adc2}\label{log__module_8h_a575cc6e8c5717c4e7592cd6a3a25adc2} 
+\#define {\bfseries BCKG\+\_\+\+LILAC}~"{}\textbackslash{}033\mbox{[}1;48;2;205;98;248m"{}
+\item 
+\Hypertarget{log__module_8h_a2d022de166227bc6e06d61d807ad44ca}\label{log__module_8h_a2d022de166227bc6e06d61d807ad44ca} 
+\#define {\bfseries BCKG\+\_\+\+L\+\_\+\+LILAC}~"{}\textbackslash{}033\mbox{[}1;48;2;218;187;253m"{}
+\item 
+\Hypertarget{log__module_8h_a475df0d9bbf72a496b3b362ef75a2a0f}\label{log__module_8h_a475df0d9bbf72a496b3b362ef75a2a0f} 
+\#define {\bfseries END\+\_\+\+COLOR}~"{}\textbackslash{}033\mbox{[}0m"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}\label{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16} 
+typedef uint8\+\_\+t {\bfseries log\+Type\+\_\+t}
+\begin{DoxyCompactList}\small\item\em This type is designed to create variables that store different log types. \end{DoxyCompactList}\item 
+\Hypertarget{log__module_8h_aa591a210ec6b97bebde23481f7723018}\label{log__module_8h_aa591a210ec6b97bebde23481f7723018} 
+typedef char \texorpdfstring{$\ast$}{*} {\bfseries log\+Label\+\_\+t}
+\begin{DoxyCompactList}\small\item\em This type creates variables to store the LOG name or label. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{log__module_8h_ad32193f36f27b64a34f37c036315b507}\label{log__module_8h_ad32193f36f27b64a34f37c036315b507} 
-enum \mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}} \{ \newline
-{\bfseries LOG\+\_\+\+INFO\+\_\+T}
-, {\bfseries LOG\+\_\+\+DEBUG\+\_\+T}
-, {\bfseries LOG\+\_\+\+WARNING\+\_\+T}
-, {\bfseries LOG\+\_\+\+ERROR\+\_\+T}
-, \newline
-{\bfseries LOG\+\_\+\+FATAL\+\_\+T}
-, {\bfseries LOG\+\_\+\+UNSUPPORTED}
- \}
-\begin{DoxyCompactList}\small\item\em This is the type to select the LOG type. \end{DoxyCompactList}\item 
 \Hypertarget{log__module_8h_aaf05bef91c6a4c8e25806e08e70ae184}\label{log__module_8h_aaf05bef91c6a4c8e25806e08e70ae184} 
 enum {\bfseries log\+Flag\+Type\+\_\+t} \{ \newline
 {\bfseries PATH\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0)
@@ -51,139 +173,138 @@ enum {\bfseries log\+Flag\+Type\+\_\+t} \{ \newline
 , {\bfseries LINE\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2)
 , {\bfseries DATE\+\_\+\+EN\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3)
 , \newline
-{\bfseries ALL\+\_\+\+DISABLED\+\_\+T} = (0x00)
+{\bfseries LOG\+\_\+\+ENABLE\+\_\+T} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4)
+, {\bfseries ALL\+\_\+\+DISABLED\+\_\+T} = (0x00)
 , {\bfseries ALL\+\_\+\+ENABLED\+\_\+T} = (0x0F)
  \}
-\end{DoxyCompactItemize}
+\item 
+\Hypertarget{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240}\label{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240} 
+enum \mbox{\hyperlink{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240}{log\+Text\+Color\+\_\+t}} \{ \newline
+{\bfseries TXT\+\_\+\+BLUE}
+, {\bfseries TXT\+\_\+\+GREEN}
+, {\bfseries TXT\+\_\+\+YELLOW}
+, {\bfseries TXT\+\_\+\+ORAGE}
+, \newline
+{\bfseries TXT\+\_\+\+RED}
+, {\bfseries TXT\+\_\+\+TURQUOISE}
+, {\bfseries TXT\+\_\+\+PURPLE}
+, {\bfseries TXT\+\_\+\+L\+\_\+\+TURQUOISE}
+, \newline
+{\bfseries TXT\+\_\+\+NAVY\+\_\+\+BLUE}
+, {\bfseries TXT\+\_\+\+GREEN\+\_\+\+DRK}
+, {\bfseries TXT\+\_\+\+VINE}
+, {\bfseries TXT\+\_\+\+WHITE}
+, \newline
+{\bfseries TXT\+\_\+\+PINK}
+, {\bfseries TXT\+\_\+\+PINKL}
+, {\bfseries TXT\+\_\+\+CYAN}
+, {\bfseries TXT\+\_\+\+BROWN}
+, \newline
+{\bfseries TXT\+\_\+\+GRAY}
+, {\bfseries TXT\+\_\+\+BLACK}
+, {\bfseries TXT\+\_\+\+LILAC}
+, {\bfseries TXT\+\_\+\+L\+\_\+\+LILAC}
+ \}
+\begin{DoxyCompactList}\small\item\em These are the LOG colors supported for this version. They should be pased in CREATE\+\_\+\+LOG\+\_\+\+MACRO(name, color). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\+\_\+message}} (\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}} log\+Type, const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}fmt,...)
+void \mbox{\hyperlink{log__module_8h_ab420c9204b90ce407825494140832ba5}{log\+\_\+message}} (\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{log\+Type\+\_\+t}} log\+Type, \mbox{\hyperlink{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240}{log\+Text\+Color\+\_\+t}} color, \mbox{\hyperlink{log__module_8h_aa591a210ec6b97bebde23481f7723018}{log\+Label\+\_\+t}} label, char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}fmt, va\+\_\+list args)
 \begin{DoxyCompactList}\small\item\em This is the abstraction function to generate the message for the differents LOGS. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{log__module_8h_af011428bfd841b079178aee63539f4df}{conf\+Log}} (\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}} log\+Type, log\+Flag\+Type\+\_\+t config)
-\begin{DoxyCompactList}\small\item\em This function sets the LOG configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{log__module_8h_af011428bfd841b079178aee63539f4df}{conf\+Log}} (\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{log\+Type\+\_\+t}} log\+Type, log\+Flag\+Type\+\_\+t config)
+\begin{DoxyCompactList}\small\item\em This function sets the LOG configuration. \end{DoxyCompactList}\item 
+\Hypertarget{log__module_8h_ae010172e4655105810dde969516da6a3}\label{log__module_8h_ae010172e4655105810dde969516da6a3} 
+void {\bfseries print\+Git\+Version} (const char \texorpdfstring{$\ast$}{*}file)
+\item 
+\Hypertarget{log__module_8h_a829aa93a78b10314f302a53c91db66c1}\label{log__module_8h_a829aa93a78b10314f302a53c91db66c1} 
+void {\bfseries print\+Git\+Version\+LOG} (void)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-This library provides a base to make a simple LOG for different aplications @\+NOTE\+: The color of the LOG depends of the terminal or console. This take effect on systems based of UNIX. 
+This library provides a base to make a simple LOG for different aplications @\+NOTE\+: The color of the LOG depends of the terminal or console. It takes effect on systems based of UNIX. 
 
 \begin{DoxyAuthor}{Author}
 EM2 (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
-1.\+0 
+2.\+0 
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2024-\/11-\/29
+2024-\/11-\/29 
 \end{DoxyDate}
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{log__module_8h}{log\_module.h}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *argv[])}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_INFO\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T);}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_DEBUG\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T);}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_WARNING\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T);}
-\DoxyCodeLine{\ \ \ \ confLog(LOG\_ERROR\_T,\ PATH\_EN\_T);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3}{LOG\_INFO}}(\textcolor{stringliteral}{"{}This\ is\ an\ INFO\ message."{}});}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_ac06cfc686322558f590c50eab8622ebd}{LOG\_DEBUG}}(\textcolor{stringliteral}{"{}This\ is\ a\ DEBUG\ message."{}});}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_afde44945335adc0c0ae2986fea13438f}{LOG\_WARNING}}(\textcolor{stringliteral}{"{}This\ is\ a\ WARNING\ message."{}});}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78}{LOG\_ERROR}}(\textcolor{stringliteral}{"{}This\ is\ an\ ERROR\ message."{}});}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_aa842d0e31b246c53e60d17b2d076e193}{LOG\_FATAL}}(\textcolor{stringliteral}{"{}This\ is\ a\ FATAL\ message."{}});}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\}}
-\DoxyCodeLine{}
-\DoxyCodeLine{Output:}
-\DoxyCodeLine{[INFO]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 10)\ [2024-\/12-\/02\ 09:57:11]:\ This\ is\ an\ INFO\ message.}
-\DoxyCodeLine{[DBG]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ (Line\ 11)\ :\ This\ is\ a\ DEBUG\ message.}
-\DoxyCodeLine{[WRN]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\)main.c\ :\ This\ is\ a\ WARNING\ message.}
-\DoxyCodeLine{[ERR]\ C:\(\backslash\)Users\(\backslash\)a\_gc\(\backslash\)Documents\(\backslash\)Q\(\backslash\)c\(\backslash\)VS\_CODE\(\backslash\)LOG\_test\(\backslash\)ExampleLOG\(\backslash\):\ This\ is\ an\ ERROR\ message.}
-\DoxyCodeLine{[FATAL]\ :\ This\ is\ a\ FATAL\ message.}
-
-\end{DoxyCode}
- \begin{DoxyCopyright}{Copyright}
-Copyright (c) 2024 
-\end{DoxyCopyright}
 
 
 \doxysubsection{Macro Definition Documentation}
-\Hypertarget{log__module_8h_ac06cfc686322558f590c50eab8622ebd}\index{log\_module.h@{log\_module.h}!LOG\_DEBUG@{LOG\_DEBUG}}
-\index{LOG\_DEBUG@{LOG\_DEBUG}!log\_module.h@{log\_module.h}}
-\doxysubsubsection{\texorpdfstring{LOG\_DEBUG}{LOG\_DEBUG}}
-{\footnotesize\ttfamily \label{log__module_8h_ac06cfc686322558f590c50eab8622ebd} 
-\#define LOG\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+\Hypertarget{log__module_8h_a39d445cdfa877da3e12654761a6b36bf}\index{log\_module.h@{log\_module.h}!CREATE\_LOG\_MACRO@{CREATE\_LOG\_MACRO}}
+\index{CREATE\_LOG\_MACRO@{CREATE\_LOG\_MACRO}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{CREATE\_LOG\_MACRO}{CREATE\_LOG\_MACRO}}
+{\footnotesize\ttfamily \label{log__module_8h_a39d445cdfa877da3e12654761a6b36bf} 
+\#define CREATE\+\_\+\+LOG\+\_\+\+MACRO(\begin{DoxyParamCaption}\item[{}]{name}{, }\item[{}]{color}{}\end{DoxyParamCaption})}
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_DEBUG\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{logType\_t}}\ LOG\_\#\#name\#\#\_T\ =\ \_\_COUNTER\_\_;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{log__module_8h_aa591a210ec6b97bebde23481f7723018}{logLabel\_t}}\ LABEL\_\#\#name\ =\ \#name;\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ LOG\_\#\#name(\textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ va\_list\ args;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ va\_start(args,\ fmt);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ log\_message(LOG\_\#\#name\#\#\_T,\ color,\ LABEL\_\#\#name,\ file,\ line,\ fmt,\ args);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ va\_end(args);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}\index{log\_module.h@{log\_module.h}!FL@{FL}}
+\index{FL@{FL}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{FL}{FL}}
+{\footnotesize\ttfamily \label{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191} 
+\#define FL~\+\_\+\+\_\+\+FILE\+\_\+\+\_\+, \+\_\+\+\_\+\+LINE\+\_\+\+\_\+}
+
+
+
+This MACRO was created to pass the current line and file where the LOG was called It must be used with every created LOG. For instance, if you created the LOG named USER, it should be used as follows\+: 
+
+CREATE\+\_\+\+LOG\+\_\+\+MACRO(\+USER, TXT\+\_\+\+BLUE);
+
+LOG\+\_\+\+USER(LF,"{}\+Hello Dog"{}); LOG\+\_\+\+USER(LF,"{}value\+: \%d"{}, value); \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_an-example}{An}}.\end{Desc}
+\Hypertarget{log__module_8h_a00fc9d4bb97208570d2ae4d4e658d56c}\index{log\_module.h@{log\_module.h}!GIT\_VERSION@{GIT\_VERSION}}
+\index{GIT\_VERSION@{GIT\_VERSION}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{GIT\_VERSION}{GIT\_VERSION}}
+{\footnotesize\ttfamily \label{log__module_8h_a00fc9d4bb97208570d2ae4d4e658d56c} 
+\#define GIT\+\_\+\+VERSION(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{printGitVersion(\_\_FILE\_\_)}
 
 \end{DoxyCode}
 
 
-This is the MACRO fuctions for DEBUG LOG. 
+This macro prints the branch and the commit of the module wich calls the macro. 
 
-\Hypertarget{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78}\index{log\_module.h@{log\_module.h}!LOG\_ERROR@{LOG\_ERROR}}
-\index{LOG\_ERROR@{LOG\_ERROR}!log\_module.h@{log\_module.h}}
-\doxysubsubsection{\texorpdfstring{LOG\_ERROR}{LOG\_ERROR}}
-{\footnotesize\ttfamily \label{log__module_8h_ae6fc70e87e424e7083c63696b8fb9e78} 
-\#define LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_an-example}{An}}.\end{Desc}
+\Hypertarget{log__module_8h_a7a1774fd4ea32240858c457788699b4a}\index{log\_module.h@{log\_module.h}!GIT\_VERSION\_LOG@{GIT\_VERSION\_LOG}}
+\index{GIT\_VERSION\_LOG@{GIT\_VERSION\_LOG}!log\_module.h@{log\_module.h}}
+\doxysubsubsection{\texorpdfstring{GIT\_VERSION\_LOG}{GIT\_VERSION\_LOG}}
+{\footnotesize\ttfamily \label{log__module_8h_a7a1774fd4ea32240858c457788699b4a} 
+\#define GIT\+\_\+\+VERSION\+\_\+\+LOG(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_ERROR\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{printGitVersionLOG()}
 
 \end{DoxyCode}
 
 
-This is the MACRO fuctions for ERROR LOG. 
+This macro prints the branch and the commit of the log\+\_\+module. 
 
-\Hypertarget{log__module_8h_aa842d0e31b246c53e60d17b2d076e193}\index{log\_module.h@{log\_module.h}!LOG\_FATAL@{LOG\_FATAL}}
-\index{LOG\_FATAL@{LOG\_FATAL}!log\_module.h@{log\_module.h}}
-\doxysubsubsection{\texorpdfstring{LOG\_FATAL}{LOG\_FATAL}}
-{\footnotesize\ttfamily \label{log__module_8h_aa842d0e31b246c53e60d17b2d076e193} 
-\#define LOG\+\_\+\+FATAL(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
-
-{\bfseries Value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_FATAL\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
-
-\end{DoxyCode}
-
-
-This is the MACRO fuctions for FATAL LOG. 
-
-\Hypertarget{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3}\index{log\_module.h@{log\_module.h}!LOG\_INFO@{LOG\_INFO}}
-\index{LOG\_INFO@{LOG\_INFO}!log\_module.h@{log\_module.h}}
-\doxysubsubsection{\texorpdfstring{LOG\_INFO}{LOG\_INFO}}
-{\footnotesize\ttfamily \label{log__module_8h_ae69d735f8291bd2aff230fe6ffb4d4b3} 
-\#define LOG\+\_\+\+INFO(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
-
-{\bfseries Value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_INFO\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
-
-\end{DoxyCode}
-
-
-This is the MACRO fuctions for INFO LOG. 
-
-\Hypertarget{log__module_8h_afde44945335adc0c0ae2986fea13438f}\index{log\_module.h@{log\_module.h}!LOG\_WARNING@{LOG\_WARNING}}
-\index{LOG\_WARNING@{LOG\_WARNING}!log\_module.h@{log\_module.h}}
-\doxysubsubsection{\texorpdfstring{LOG\_WARNING}{LOG\_WARNING}}
-{\footnotesize\ttfamily \label{log__module_8h_afde44945335adc0c0ae2986fea13438f} 
-\#define LOG\+\_\+\+WARNING(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
-
-{\bfseries Value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{log__module_8h_a23150f0002489958ddb2505123931378}{log\_message}}(LOG\_WARNING\_T,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
-
-\end{DoxyCode}
-
-
-This is the MACRO fuctions for WARNING LOG. 
-
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_an-example}{An}}.\end{Desc}
 
 
 \doxysubsection{Function Documentation}
@@ -191,7 +312,7 @@ This is the MACRO fuctions for WARNING LOG.
 \index{confLog@{confLog}!log\_module.h@{log\_module.h}}
 \doxysubsubsection{\texorpdfstring{confLog()}{confLog()}}
 {\footnotesize\ttfamily \label{log__module_8h_af011428bfd841b079178aee63539f4df} 
-void conf\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}}}]{log\+Type}{, }\item[{log\+Flag\+Type\+\_\+t}]{config}{}\end{DoxyParamCaption})}
+void conf\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{log\+Type\+\_\+t}}}]{log\+Type}{, }\item[{log\+Flag\+Type\+\_\+t}]{config}{}\end{DoxyParamCaption})}
 
 
 
@@ -201,36 +322,36 @@ This function sets the LOG configuration.
 \begin{DoxyParams}{Parameters}
 {\em log\+Type} & indicates the type of LOG to be configured. \\
 \hline
-{\em config} & this parameter contains the desired flag configurations. You could do several OR combination to select the different LOG options (PATH\+\_\+\+EN\+\_\+T, NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T, LINE\+\_\+\+EN\+\_\+T, DATE\+\_\+\+EN\+\_\+T)\\
+{\em config} & this parameter contains the desired flag configurations. You could make several OR combination to select the different LOG options (PATH\+\_\+\+EN\+\_\+T, NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T, LINE\+\_\+\+EN\+\_\+T, DATE\+\_\+\+EN\+\_\+T)\\
 \hline
 \end{DoxyParams}
-Example to enables only shows the path and the name of the file where the LOG was called\+:
+Example to enable only the path and the name of the file where the LOG was called\+:
 
-conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T);
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LOG\+\_\+\+ENABLE\+\_\+T);
 
-To disable any configuration flag, you have to chosse again the configuration flags
+To disable any configuration flag, it must be chossen the configuration flags again.
 
-Example to disable path and the name of the file where the LOG was called, after these was configured\+:
+Example to disable path and name of the file\+:
 
-conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T)
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LOG\+\_\+\+ENABLE\+\_\+T)
 
-conf\+Log(\+LOG\+\_\+\+INFO\+\_\+\+T, DATE\+\_\+\+EN\+\_\+\+T)
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, DATE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LOG\+\_\+\+ENABLE\+\_\+T)
 
 The line above only configurates the date when the LOG was called and it omits the rest of the flags.
 
 If you want to enable all configuration flags you have to use\+:
 
-conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LINE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} DATE\+\_\+\+EN\+\_\+T);
+conf\+Log(LOG\+\_\+\+INFO\+\_\+T, PATH\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} NAME\+\_\+\+FILE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LINE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} DATE\+\_\+\+EN\+\_\+T \texorpdfstring{$\vert$}{|} LOG\+\_\+\+ENABLE\+\_\+T);
 
 or
 
 conf\+Log(\+LOG\+\_\+\+INFO\+\_\+\+T, ALL\+\_\+\+ENABLED\+\_\+\+T)
 
-On the other hand, if a LOG is not configured, all configuration flags are disabled for this LOG. \Hypertarget{log__module_8h_a23150f0002489958ddb2505123931378}\index{log\_module.h@{log\_module.h}!log\_message@{log\_message}}
+On the other hand, if a LOG is not configured, all configuration flags are disabled for this LOG except the LOG\+\_\+\+ENABLE\+\_\+T option. \Hypertarget{log__module_8h_ab420c9204b90ce407825494140832ba5}\index{log\_module.h@{log\_module.h}!log\_message@{log\_message}}
 \index{log\_message@{log\_message}!log\_module.h@{log\_module.h}}
 \doxysubsubsection{\texorpdfstring{log\_message()}{log\_message()}}
-{\footnotesize\ttfamily \label{log__module_8h_a23150f0002489958ddb2505123931378} 
-void log\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log__module_8h_ad32193f36f27b64a34f37c036315b507}{log\+Type\+\_\+t}}}]{log\+Type}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{log__module_8h_ab420c9204b90ce407825494140832ba5} 
+void log\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log__module_8h_a0b56cc5e3e88c6b6f5880822c8d0bd16}{log\+Type\+\_\+t}}}]{log\+Type}{, }\item[{\mbox{\hyperlink{log__module_8h_a4ca3707f86965e11982dd59d7d5b9240}{log\+Text\+Color\+\_\+t}}}]{color}{, }\item[{\mbox{\hyperlink{log__module_8h_aa591a210ec6b97bebde23481f7723018}{log\+Label\+\_\+t}}}]{label}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{va\+\_\+list}]{args}{}\end{DoxyParamCaption})}
 
 
 
@@ -239,6 +360,10 @@ This is the abstraction function to generate the message for the differents LOGS
 
 \begin{DoxyParams}{Parameters}
 {\em log\+Type} & is the LOG type and indicates the context to use the LOG particularities. \\
+\hline
+{\em color} & is the log color. \\
+\hline
+{\em label} & is the log name or label. \\
 \hline
 {\em file} & is the file name where the LOG was called. \\
 \hline

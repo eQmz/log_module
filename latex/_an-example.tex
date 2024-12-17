@@ -1,0 +1,134 @@
+\doxysection{An}
+\hypertarget{_an-example}{}\label{_an-example}usage example is showed as follows\+:
+
+To use the log\+\_\+module.\+c/h library effectively, is recommended to create an interface layer (e.\+g., my\+\_\+logs.\+h file). In this layer all logs could be defined to be used for any module that includes the layer.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef\ \_MY\_LOGS\_}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ \_MY\_LOGS\_}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{log__module_8h}{log\_module.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(USER,\ TXT\_BLUE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE1,\ TXT\_NAVY\_BLUE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE2,\ TXT\_PURPLE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE3,\ TXT\_LILAC);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(MODULE6,\ TXT\_TURQUOISE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT1,\ TXT\_L\_LILAC);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT2,\ TXT\_GREEN\_DRK);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT3,\ TXT\_CYAN);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT4,\ TXT\_BLACK);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT5,\ TXT\_GRAY);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT6,\ TXT\_BROWN);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT7,\ TXT\_VINE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(EVENT8,\ TXT\_WHITE);}
+\DoxyCodeLine{}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(INFO,\ TXT\_L\_TURQUOISE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(DEBUG,\ TXT\_GREEN);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(WARNING,\ TXT\_YELLOW);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(ERROR,\ TXT\_ORAGE);}
+\DoxyCodeLine{CREATE\_LOG\_MACRO(FATAL,\ TXT\_RED);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_MY\_LOGS\_}}
+
+\end{DoxyCode}
+
+
+This interface layer allows the use of all created logs in any module where it is included.
+
+Therefore, the main.\+c file could include my\+\_\+logs.\+h file and use all the created logs. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}myLogs.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *argv[])}
+\DoxyCodeLine{\{\ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_a00fc9d4bb97208570d2ae4d4e658d56c}{GIT\_VERSION}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{log__module_8h_a7a1774fd4ea32240858c457788699b4a}{GIT\_VERSION\_LOG}}();}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_INFO\_T,\ (PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T\ |\ DATE\_EN\_T)\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_DEBUG\_T,\ (PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LINE\_EN\_T)\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_WARNING\_T,\ PATH\_EN\_T\ |\ NAME\_FILE\_EN\_T\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{\ \ \ \ confLog(LOG\_ERROR\_T,\ PATH\_EN\_T\ |\ LOG\_ENABLE\_T);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE1(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ MODULE1\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_USER(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}dog."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE6(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ MODULE1\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_INFO(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ an\ INFO\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE2(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ MODULE2\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_MODULE3(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ MODULE3\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT1(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT1\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT2(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT2\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT3(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT3\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_DEBUG(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ DEBUG\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT4(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT4\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT5(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT5\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT6(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT6\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT7(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT7\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_EVENT8(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ EVENT8\ message.\(\backslash\)n"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ LOG\_INFO(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\ \textcolor{stringliteral}{"{}This\ is\ a\ INFO\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_DEBUG(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ DEBUG\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_WARNING(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ WARNING\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_ERROR(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ an\ ERROR\ message."{}});}
+\DoxyCodeLine{\ \ \ \ LOG\_FATAL(\mbox{\hyperlink{log__module_8h_a2bebd3800fadbad87d4ae76050dc7191}{FL}},\textcolor{stringliteral}{"{}This\ is\ a\ FATAL\ message."{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Press\ Enter\ key\ to\ exit..."{}});}
+\DoxyCodeLine{\ \ \ \ getchar();}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Output:}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ MODULE:\ main.c\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{[Branch:\ master]}
+\DoxyCodeLine{[Commit:\ 5283f91e7d6fe2966c95b929cc672a35f793a555]}
+\DoxyCodeLine{}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MODULE:\ log\_module\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{[Branch:\ develop]}
+\DoxyCodeLine{[Commit:\ d442018192b76a05441ed71469adf3a170292194]}
+\DoxyCodeLine{}
+\DoxyCodeLine{====================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{[MODULE1]\ :\ This\ is\ a\ MODULE1\ message.}
+\DoxyCodeLine{[USER]\ :\ dog.}
+\DoxyCodeLine{[MODULE6]\ :\ This\ is\ a\ MODULE1\ message.}
+\DoxyCodeLine{[INFO]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 16)\ [2024-\/12-\/17\ 15:30:54]:\ This\ is\ an\ INFO\ message.\ \ }
+\DoxyCodeLine{[MODULE2]\ :\ This\ is\ a\ MODULE2\ message.}
+\DoxyCodeLine{[MODULE3]\ :\ This\ is\ a\ MODULE3\ message.}
+\DoxyCodeLine{[EVENT1]\ :\ This\ is\ a\ EVENT1\ message.}
+\DoxyCodeLine{[EVENT2]\ :\ This\ is\ a\ EVENT2\ message.}
+\DoxyCodeLine{[EVENT3]\ :\ This\ is\ a\ EVENT3\ message.}
+\DoxyCodeLine{[DEBUG]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 22)\ :\ This\ is\ a\ DEBUG\ message.}
+\DoxyCodeLine{[EVENT4]\ :\ This\ is\ a\ EVENT4\ message.}
+\DoxyCodeLine{[EVENT5]\ :\ This\ is\ a\ EVENT5\ message.}
+\DoxyCodeLine{[EVENT6]\ :\ This\ is\ a\ EVENT6\ message.}
+\DoxyCodeLine{[EVENT7]\ :\ This\ is\ a\ EVENT7\ message.}
+\DoxyCodeLine{[EVENT8]\ :\ This\ is\ a\ EVENT8\ message.}
+\DoxyCodeLine{}
+\DoxyCodeLine{[INFO]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 30)\ [2024-\/12-\/17\ 15:30:54]:\ This\ is\ a\ INFO\ message.\ \ \ }
+\DoxyCodeLine{[DEBUG]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ (Line\ 31)\ :\ This\ is\ a\ DEBUG\ message.}
+\DoxyCodeLine{[WARNING]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/main.c\ :\ This\ is\ a\ WARNING\ message.}
+\DoxyCodeLine{[ERROR]\ /mnt/c/Users/a\_gc/Documents/Q/c/VS\_CODE/LOG\_test/ExampleLOG/:\ This\ is\ an\ ERROR\ message.}
+\DoxyCodeLine{[FATAL]\ :\ This\ is\ a\ FATAL\ message.}
+\DoxyCodeLine{Press\ Enter\ key\ to\ exit...}
+
+\end{DoxyCode}
+
+
+On the other hand, if the my\+\_\+logs.\+h file is included in another module or library, that library can use any created log. \begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024
+\end{DoxyCopyright}
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

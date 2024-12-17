@@ -25,7 +25,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="lenguaje-c-1.png" height="100px"/></td>
+  <td id="projectlogo"><img alt="Logo" src=" lenguaje-c-1.png" height="100px"/></td>
   <td id="projectalign">
    <div id="projectname">log_module<span id="projectnumber">&#160;1.0</span>
    </div>
@@ -90,13 +90,14 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">log_module.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This library provides a base to make a simple LOG for different aplications @NOTE: The color of the LOG depends of the terminal or console. This take effect on systems based of UNIX.  
+<p>This library provides a base to make a simple LOG for different aplications @NOTE: The color of the LOG depends of the terminal or console. It takes effect on systems based of UNIX.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
@@ -116,211 +117,313 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae69d735f8291bd2aff230fe6ffb4d4b3" id="r_ae69d735f8291bd2aff230fe6ffb4d4b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae69d735f8291bd2aff230fe6ffb4d4b3">LOG_INFO</a>(fmt, ...)</td></tr>
-<tr class="memdesc:ae69d735f8291bd2aff230fe6ffb4d4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the MACRO fuctions for INFO LOG.  <br /></td></tr>
-<tr class="separator:ae69d735f8291bd2aff230fe6ffb4d4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac06cfc686322558f590c50eab8622ebd" id="r_ac06cfc686322558f590c50eab8622ebd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac06cfc686322558f590c50eab8622ebd">LOG_DEBUG</a>(fmt, ...)</td></tr>
-<tr class="memdesc:ac06cfc686322558f590c50eab8622ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the MACRO fuctions for DEBUG LOG.  <br /></td></tr>
-<tr class="separator:ac06cfc686322558f590c50eab8622ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afde44945335adc0c0ae2986fea13438f" id="r_afde44945335adc0c0ae2986fea13438f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afde44945335adc0c0ae2986fea13438f">LOG_WARNING</a>(fmt, ...)</td></tr>
-<tr class="memdesc:afde44945335adc0c0ae2986fea13438f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the MACRO fuctions for WARNING LOG.  <br /></td></tr>
-<tr class="separator:afde44945335adc0c0ae2986fea13438f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6fc70e87e424e7083c63696b8fb9e78" id="r_ae6fc70e87e424e7083c63696b8fb9e78"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6fc70e87e424e7083c63696b8fb9e78">LOG_ERROR</a>(fmt, ...)</td></tr>
-<tr class="memdesc:ae6fc70e87e424e7083c63696b8fb9e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the MACRO fuctions for ERROR LOG.  <br /></td></tr>
-<tr class="separator:ae6fc70e87e424e7083c63696b8fb9e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa842d0e31b246c53e60d17b2d076e193" id="r_aa842d0e31b246c53e60d17b2d076e193"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa842d0e31b246c53e60d17b2d076e193">LOG_FATAL</a>(fmt, ...)</td></tr>
-<tr class="memdesc:aa842d0e31b246c53e60d17b2d076e193"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the MACRO fuctions for FATAL LOG.  <br /></td></tr>
-<tr class="separator:aa842d0e31b246c53e60d17b2d076e193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bebd3800fadbad87d4ae76050dc7191" id="r_a2bebd3800fadbad87d4ae76050dc7191"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bebd3800fadbad87d4ae76050dc7191">FL</a>&#160;&#160;&#160;__FILE__, __LINE__</td></tr>
+<tr class="memdesc:a2bebd3800fadbad87d4ae76050dc7191"><td class="mdescLeft">&#160;</td><td class="mdescRight">This MACRO was created to pass the current line and file where the LOG was called It must be used with every created LOG. For instance, if you created the LOG named USER, it should be used as follows:  <br /></td></tr>
+<tr class="separator:a2bebd3800fadbad87d4ae76050dc7191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d445cdfa877da3e12654761a6b36bf" id="r_a39d445cdfa877da3e12654761a6b36bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39d445cdfa877da3e12654761a6b36bf">CREATE_LOG_MACRO</a>(name,  color)</td></tr>
+<tr class="separator:a39d445cdfa877da3e12654761a6b36bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6411c77ebe21279e2bf74aac9b0f6c" id="r_abd6411c77ebe21279e2bf74aac9b0f6c"><td class="memItemLeft" align="right" valign="top"><a id="abd6411c77ebe21279e2bf74aac9b0f6c" name="abd6411c77ebe21279e2bf74aac9b0f6c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_UNSUPPORTED</b>&#160;&#160;&#160;120</td></tr>
+<tr class="memdesc:abd6411c77ebe21279e2bf74aac9b0f6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">It defines the max number of LOGS that could be created. <br /></td></tr>
+<tr class="separator:abd6411c77ebe21279e2bf74aac9b0f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00fc9d4bb97208570d2ae4d4e658d56c" id="r_a00fc9d4bb97208570d2ae4d4e658d56c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00fc9d4bb97208570d2ae4d4e658d56c">GIT_VERSION</a>()</td></tr>
+<tr class="memdesc:a00fc9d4bb97208570d2ae4d4e658d56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This macro prints the branch and the commit of the module wich calls the macro.  <br /></td></tr>
+<tr class="separator:a00fc9d4bb97208570d2ae4d4e658d56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a1774fd4ea32240858c457788699b4a" id="r_a7a1774fd4ea32240858c457788699b4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a1774fd4ea32240858c457788699b4a">GIT_VERSION_LOG</a>()</td></tr>
+<tr class="memdesc:a7a1774fd4ea32240858c457788699b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This macro prints the branch and the commit of the log_module.  <br /></td></tr>
+<tr class="separator:a7a1774fd4ea32240858c457788699b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e402ca4f48eba3f31db597c712dfa67" id="r_a6e402ca4f48eba3f31db597c712dfa67"><td class="memItemLeft" align="right" valign="top"><a id="a6e402ca4f48eba3f31db597c712dfa67" name="a6e402ca4f48eba3f31db597c712dfa67"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_BLUE</b>&#160;&#160;&#160;&quot;\033[38;2;0;195;250m&quot;</td></tr>
+<tr class="separator:a6e402ca4f48eba3f31db597c712dfa67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f72072a891489b733a5262eeda0908d" id="r_a0f72072a891489b733a5262eeda0908d"><td class="memItemLeft" align="right" valign="top"><a id="a0f72072a891489b733a5262eeda0908d" name="a0f72072a891489b733a5262eeda0908d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_GREEN</b>&#160;&#160;&#160;&quot;\033[38;2;74;252;210m&quot;</td></tr>
+<tr class="separator:a0f72072a891489b733a5262eeda0908d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7e7b1c182f7189d6ac92f610209446" id="r_a6e7e7b1c182f7189d6ac92f610209446"><td class="memItemLeft" align="right" valign="top"><a id="a6e7e7b1c182f7189d6ac92f610209446" name="a6e7e7b1c182f7189d6ac92f610209446"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_YELLOW</b>&#160;&#160;&#160;&quot;\033[38;2;255;254;114m&quot;</td></tr>
+<tr class="separator:a6e7e7b1c182f7189d6ac92f610209446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3020ce039c994636a1702cf1fe61b6de" id="r_a3020ce039c994636a1702cf1fe61b6de"><td class="memItemLeft" align="right" valign="top"><a id="a3020ce039c994636a1702cf1fe61b6de" name="a3020ce039c994636a1702cf1fe61b6de"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_ORAGE</b>&#160;&#160;&#160;&quot;\033[38;2;255;153;0m&quot;</td></tr>
+<tr class="separator:a3020ce039c994636a1702cf1fe61b6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555a70bc0055a01ffe22773b65592275" id="r_a555a70bc0055a01ffe22773b65592275"><td class="memItemLeft" align="right" valign="top"><a id="a555a70bc0055a01ffe22773b65592275" name="a555a70bc0055a01ffe22773b65592275"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_RED</b>&#160;&#160;&#160;&quot;\033[38;2;252;96;96m&quot;</td></tr>
+<tr class="separator:a555a70bc0055a01ffe22773b65592275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add0425064bfac4c97fd1ea707fe60eb7" id="r_add0425064bfac4c97fd1ea707fe60eb7"><td class="memItemLeft" align="right" valign="top"><a id="add0425064bfac4c97fd1ea707fe60eb7" name="add0425064bfac4c97fd1ea707fe60eb7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_TURQUOISE</b>&#160;&#160;&#160;&quot;\033[38;2;24;170;195m&quot;</td></tr>
+<tr class="separator:add0425064bfac4c97fd1ea707fe60eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b2bed848a70ee368631462ec01a4b3a" id="r_a1b2bed848a70ee368631462ec01a4b3a"><td class="memItemLeft" align="right" valign="top"><a id="a1b2bed848a70ee368631462ec01a4b3a" name="a1b2bed848a70ee368631462ec01a4b3a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_PURPLE</b>&#160;&#160;&#160;&quot;\033[38;2;110;99;247m&quot;</td></tr>
+<tr class="separator:a1b2bed848a70ee368631462ec01a4b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587a2db1b5f687491ef4ed15d500bd85" id="r_a587a2db1b5f687491ef4ed15d500bd85"><td class="memItemLeft" align="right" valign="top"><a id="a587a2db1b5f687491ef4ed15d500bd85" name="a587a2db1b5f687491ef4ed15d500bd85"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_L_TURQUOISE</b>&#160;&#160;&#160;&quot;\033[38;2;33;222;247m&quot;</td></tr>
+<tr class="separator:a587a2db1b5f687491ef4ed15d500bd85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5f3be0f18635949def2a8f0a871786" id="r_a1d5f3be0f18635949def2a8f0a871786"><td class="memItemLeft" align="right" valign="top"><a id="a1d5f3be0f18635949def2a8f0a871786" name="a1d5f3be0f18635949def2a8f0a871786"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_NAVY_BLUE</b>&#160;&#160;&#160;&quot;\033[38;2;0;120;255m&quot;</td></tr>
+<tr class="separator:a1d5f3be0f18635949def2a8f0a871786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb4859f15d45987a64862c6d23d25419" id="r_abb4859f15d45987a64862c6d23d25419"><td class="memItemLeft" align="right" valign="top"><a id="abb4859f15d45987a64862c6d23d25419" name="abb4859f15d45987a64862c6d23d25419"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_GREEN_DRK</b>&#160;&#160;&#160;&quot;\033[38;2;3;201;154m&quot;</td></tr>
+<tr class="separator:abb4859f15d45987a64862c6d23d25419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a207ecf18ea0b7853190f947c81f1d2db" id="r_a207ecf18ea0b7853190f947c81f1d2db"><td class="memItemLeft" align="right" valign="top"><a id="a207ecf18ea0b7853190f947c81f1d2db" name="a207ecf18ea0b7853190f947c81f1d2db"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_VINE</b>&#160;&#160;&#160;&quot;\033[38;2;215;2;80m&quot;</td></tr>
+<tr class="separator:a207ecf18ea0b7853190f947c81f1d2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab092d2c9b684d6aea800b49e212a3244" id="r_ab092d2c9b684d6aea800b49e212a3244"><td class="memItemLeft" align="right" valign="top"><a id="ab092d2c9b684d6aea800b49e212a3244" name="ab092d2c9b684d6aea800b49e212a3244"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_WHITE</b>&#160;&#160;&#160;&quot;\033[38;2;255;255;255m&quot;</td></tr>
+<tr class="separator:ab092d2c9b684d6aea800b49e212a3244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e0dc8abe6e03220ef69db64091a125" id="r_a56e0dc8abe6e03220ef69db64091a125"><td class="memItemLeft" align="right" valign="top"><a id="a56e0dc8abe6e03220ef69db64091a125" name="a56e0dc8abe6e03220ef69db64091a125"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_PINK</b>&#160;&#160;&#160;&quot;\033[38;2;246;18;154m&quot;</td></tr>
+<tr class="separator:a56e0dc8abe6e03220ef69db64091a125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb07c5714c88ab037a8298754e691b0" id="r_aabb07c5714c88ab037a8298754e691b0"><td class="memItemLeft" align="right" valign="top"><a id="aabb07c5714c88ab037a8298754e691b0" name="aabb07c5714c88ab037a8298754e691b0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_PINKL</b>&#160;&#160;&#160;&quot;\033[38;2;250;114;244m&quot;</td></tr>
+<tr class="separator:aabb07c5714c88ab037a8298754e691b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07402d6cbc33a05c66021319a9557e7d" id="r_a07402d6cbc33a05c66021319a9557e7d"><td class="memItemLeft" align="right" valign="top"><a id="a07402d6cbc33a05c66021319a9557e7d" name="a07402d6cbc33a05c66021319a9557e7d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_CYAN</b>&#160;&#160;&#160;&quot;\033[38;2;2;240;240m&quot;</td></tr>
+<tr class="separator:a07402d6cbc33a05c66021319a9557e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa600fdff91444e7693a0897b30e43cd8" id="r_aa600fdff91444e7693a0897b30e43cd8"><td class="memItemLeft" align="right" valign="top"><a id="aa600fdff91444e7693a0897b30e43cd8" name="aa600fdff91444e7693a0897b30e43cd8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_BROWN</b>&#160;&#160;&#160;&quot;\033[38;2;201;128;99m&quot;</td></tr>
+<tr class="separator:aa600fdff91444e7693a0897b30e43cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a799e4d1d2c318c8959b8a962664f734d" id="r_a799e4d1d2c318c8959b8a962664f734d"><td class="memItemLeft" align="right" valign="top"><a id="a799e4d1d2c318c8959b8a962664f734d" name="a799e4d1d2c318c8959b8a962664f734d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_GRAY</b>&#160;&#160;&#160;&quot;\033[38;2;180;180;180m&quot;</td></tr>
+<tr class="separator:a799e4d1d2c318c8959b8a962664f734d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5ffb484c291e4fe9ad9d17b58511316" id="r_ad5ffb484c291e4fe9ad9d17b58511316"><td class="memItemLeft" align="right" valign="top"><a id="ad5ffb484c291e4fe9ad9d17b58511316" name="ad5ffb484c291e4fe9ad9d17b58511316"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_BLACK</b>&#160;&#160;&#160;&quot;\033[38;2;0;0;0m&quot;</td></tr>
+<tr class="separator:ad5ffb484c291e4fe9ad9d17b58511316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a757d07ed052cdfe6bbe935770124c8be" id="r_a757d07ed052cdfe6bbe935770124c8be"><td class="memItemLeft" align="right" valign="top"><a id="a757d07ed052cdfe6bbe935770124c8be" name="a757d07ed052cdfe6bbe935770124c8be"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_LILAC</b>&#160;&#160;&#160;&quot;\033[38;2;205;98;248m&quot;</td></tr>
+<tr class="separator:a757d07ed052cdfe6bbe935770124c8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95a7b87fd949537e9ffb6577baf70807" id="r_a95a7b87fd949537e9ffb6577baf70807"><td class="memItemLeft" align="right" valign="top"><a id="a95a7b87fd949537e9ffb6577baf70807" name="a95a7b87fd949537e9ffb6577baf70807"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEXT_L_LILAC</b>&#160;&#160;&#160;&quot;\033[38;2;218;187;253m&quot;</td></tr>
+<tr class="separator:a95a7b87fd949537e9ffb6577baf70807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce6fd63525b174de5c9ea4ff143f4d9" id="r_adce6fd63525b174de5c9ea4ff143f4d9"><td class="memItemLeft" align="right" valign="top"><a id="adce6fd63525b174de5c9ea4ff143f4d9" name="adce6fd63525b174de5c9ea4ff143f4d9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_BLUE</b>&#160;&#160;&#160;&quot;\033[1;48;2;33;222;247m&quot;</td></tr>
+<tr class="separator:adce6fd63525b174de5c9ea4ff143f4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05aaadb9797151d5e30a7706dae938a6" id="r_a05aaadb9797151d5e30a7706dae938a6"><td class="memItemLeft" align="right" valign="top"><a id="a05aaadb9797151d5e30a7706dae938a6" name="a05aaadb9797151d5e30a7706dae938a6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_GREEN</b>&#160;&#160;&#160;&quot;\033[1;48;2;74;252;210m&quot;</td></tr>
+<tr class="separator:a05aaadb9797151d5e30a7706dae938a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb010dabbb6656d1def6a9152d42fac6" id="r_aeb010dabbb6656d1def6a9152d42fac6"><td class="memItemLeft" align="right" valign="top"><a id="aeb010dabbb6656d1def6a9152d42fac6" name="aeb010dabbb6656d1def6a9152d42fac6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_YELLOW</b>&#160;&#160;&#160;&quot;\033[1;48;2;255;254;114m&quot;</td></tr>
+<tr class="separator:aeb010dabbb6656d1def6a9152d42fac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae16c34fcc79f9b01eec9998ed0c688de" id="r_ae16c34fcc79f9b01eec9998ed0c688de"><td class="memItemLeft" align="right" valign="top"><a id="ae16c34fcc79f9b01eec9998ed0c688de" name="ae16c34fcc79f9b01eec9998ed0c688de"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_ORAGE</b>&#160;&#160;&#160;&quot;\033[1;48;2;255;153;0m&quot;</td></tr>
+<tr class="separator:ae16c34fcc79f9b01eec9998ed0c688de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46256d0bf5f3983ef20906f01487700f" id="r_a46256d0bf5f3983ef20906f01487700f"><td class="memItemLeft" align="right" valign="top"><a id="a46256d0bf5f3983ef20906f01487700f" name="a46256d0bf5f3983ef20906f01487700f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_RED</b>&#160;&#160;&#160;&quot;\033[1;48;2;252;96;96m&quot;</td></tr>
+<tr class="separator:a46256d0bf5f3983ef20906f01487700f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34b5cf9b2f74abc27bb2567d0d4737e" id="r_af34b5cf9b2f74abc27bb2567d0d4737e"><td class="memItemLeft" align="right" valign="top"><a id="af34b5cf9b2f74abc27bb2567d0d4737e" name="af34b5cf9b2f74abc27bb2567d0d4737e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_TURQUOISE</b>&#160;&#160;&#160;&quot;\033[1;48;2;0;163;224m&quot;</td></tr>
+<tr class="separator:af34b5cf9b2f74abc27bb2567d0d4737e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eef373dbac7b0b47fda69620372e784" id="r_a9eef373dbac7b0b47fda69620372e784"><td class="memItemLeft" align="right" valign="top"><a id="a9eef373dbac7b0b47fda69620372e784" name="a9eef373dbac7b0b47fda69620372e784"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_PURPLE</b>&#160;&#160;&#160;&quot;\033[1;48;2;110;99;247m&quot;</td></tr>
+<tr class="separator:a9eef373dbac7b0b47fda69620372e784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1ce97297f06c4dad0ee48d94b44be0" id="r_a3e1ce97297f06c4dad0ee48d94b44be0"><td class="memItemLeft" align="right" valign="top"><a id="a3e1ce97297f06c4dad0ee48d94b44be0" name="a3e1ce97297f06c4dad0ee48d94b44be0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_L_TURQUOISE</b>&#160;&#160;&#160;&quot;\033[1;48;2;66;202;234m&quot;</td></tr>
+<tr class="separator:a3e1ce97297f06c4dad0ee48d94b44be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2faff2e6983994e86bc14d13fe8bdc33" id="r_a2faff2e6983994e86bc14d13fe8bdc33"><td class="memItemLeft" align="right" valign="top"><a id="a2faff2e6983994e86bc14d13fe8bdc33" name="a2faff2e6983994e86bc14d13fe8bdc33"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_NAVY_BLUE</b>&#160;&#160;&#160;&quot;\033[1;48;2;0;16;110m&quot;</td></tr>
+<tr class="separator:a2faff2e6983994e86bc14d13fe8bdc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19e5d46ac015724a1a4527f1b0556fef" id="r_a19e5d46ac015724a1a4527f1b0556fef"><td class="memItemLeft" align="right" valign="top"><a id="a19e5d46ac015724a1a4527f1b0556fef" name="a19e5d46ac015724a1a4527f1b0556fef"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_GREEN_DRK</b>&#160;&#160;&#160;&quot;\033[1;48;2;3;201;154m&quot;</td></tr>
+<tr class="separator:a19e5d46ac015724a1a4527f1b0556fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2c2dafeea32830a187d46d133374f1" id="r_a1f2c2dafeea32830a187d46d133374f1"><td class="memItemLeft" align="right" valign="top"><a id="a1f2c2dafeea32830a187d46d133374f1" name="a1f2c2dafeea32830a187d46d133374f1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_VINE</b>&#160;&#160;&#160;&quot;\033[1;48;2;110;0;0m&quot;</td></tr>
+<tr class="separator:a1f2c2dafeea32830a187d46d133374f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a121c8b7368f73c4e28c059cc1e47d6a7" id="r_a121c8b7368f73c4e28c059cc1e47d6a7"><td class="memItemLeft" align="right" valign="top"><a id="a121c8b7368f73c4e28c059cc1e47d6a7" name="a121c8b7368f73c4e28c059cc1e47d6a7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_WHITE</b>&#160;&#160;&#160;&quot;\033[1;48;2;255;255;255m&quot;</td></tr>
+<tr class="separator:a121c8b7368f73c4e28c059cc1e47d6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bbcdf7d0f5951bc32ad8e4522d1f40b" id="r_a8bbcdf7d0f5951bc32ad8e4522d1f40b"><td class="memItemLeft" align="right" valign="top"><a id="a8bbcdf7d0f5951bc32ad8e4522d1f40b" name="a8bbcdf7d0f5951bc32ad8e4522d1f40b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_PINK</b>&#160;&#160;&#160;&quot;\033[1,48;2;246;18;154m&quot;</td></tr>
+<tr class="separator:a8bbcdf7d0f5951bc32ad8e4522d1f40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7e000ea786ca1692ae15e5e2326409" id="r_aed7e000ea786ca1692ae15e5e2326409"><td class="memItemLeft" align="right" valign="top"><a id="aed7e000ea786ca1692ae15e5e2326409" name="aed7e000ea786ca1692ae15e5e2326409"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_PINKL</b>&#160;&#160;&#160;&quot;\033[1,48;2;250;114;244m&quot;</td></tr>
+<tr class="separator:aed7e000ea786ca1692ae15e5e2326409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fb3f9c1d5edd80982d708b735d59a05" id="r_a1fb3f9c1d5edd80982d708b735d59a05"><td class="memItemLeft" align="right" valign="top"><a id="a1fb3f9c1d5edd80982d708b735d59a05" name="a1fb3f9c1d5edd80982d708b735d59a05"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_CYAN</b>&#160;&#160;&#160;&quot;\033[1,48;2;2;240;240m&quot;</td></tr>
+<tr class="separator:a1fb3f9c1d5edd80982d708b735d59a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b4f3d3cf89488f18cc78ca7026f7210" id="r_a8b4f3d3cf89488f18cc78ca7026f7210"><td class="memItemLeft" align="right" valign="top"><a id="a8b4f3d3cf89488f18cc78ca7026f7210" name="a8b4f3d3cf89488f18cc78ca7026f7210"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_BROWN</b>&#160;&#160;&#160;&quot;\033[1,48;2;201;128;99m&quot;</td></tr>
+<tr class="separator:a8b4f3d3cf89488f18cc78ca7026f7210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fcd70be7d2e8e3afdc4f7c4300541a" id="r_ad4fcd70be7d2e8e3afdc4f7c4300541a"><td class="memItemLeft" align="right" valign="top"><a id="ad4fcd70be7d2e8e3afdc4f7c4300541a" name="ad4fcd70be7d2e8e3afdc4f7c4300541a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_GRAY</b>&#160;&#160;&#160;&quot;\033[1,48;2;180;180;180m&quot;</td></tr>
+<tr class="separator:ad4fcd70be7d2e8e3afdc4f7c4300541a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62bcdffa88c704e791e544dcb845621" id="r_ac62bcdffa88c704e791e544dcb845621"><td class="memItemLeft" align="right" valign="top"><a id="ac62bcdffa88c704e791e544dcb845621" name="ac62bcdffa88c704e791e544dcb845621"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_BLACK</b>&#160;&#160;&#160;&quot;\033[1,48;0;0;0;0m&quot;</td></tr>
+<tr class="separator:ac62bcdffa88c704e791e544dcb845621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575cc6e8c5717c4e7592cd6a3a25adc2" id="r_a575cc6e8c5717c4e7592cd6a3a25adc2"><td class="memItemLeft" align="right" valign="top"><a id="a575cc6e8c5717c4e7592cd6a3a25adc2" name="a575cc6e8c5717c4e7592cd6a3a25adc2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_LILAC</b>&#160;&#160;&#160;&quot;\033[1;48;2;205;98;248m&quot;</td></tr>
+<tr class="separator:a575cc6e8c5717c4e7592cd6a3a25adc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d022de166227bc6e06d61d807ad44ca" id="r_a2d022de166227bc6e06d61d807ad44ca"><td class="memItemLeft" align="right" valign="top"><a id="a2d022de166227bc6e06d61d807ad44ca" name="a2d022de166227bc6e06d61d807ad44ca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BCKG_L_LILAC</b>&#160;&#160;&#160;&quot;\033[1;48;2;218;187;253m&quot;</td></tr>
+<tr class="separator:a2d022de166227bc6e06d61d807ad44ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475df0d9bbf72a496b3b362ef75a2a0f" id="r_a475df0d9bbf72a496b3b362ef75a2a0f"><td class="memItemLeft" align="right" valign="top"><a id="a475df0d9bbf72a496b3b362ef75a2a0f" name="a475df0d9bbf72a496b3b362ef75a2a0f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>END_COLOR</b>&#160;&#160;&#160;&quot;\033[0m&quot;</td></tr>
+<tr class="separator:a475df0d9bbf72a496b3b362ef75a2a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a0b56cc5e3e88c6b6f5880822c8d0bd16" id="r_a0b56cc5e3e88c6b6f5880822c8d0bd16"><td class="memItemLeft" align="right" valign="top"><a id="a0b56cc5e3e88c6b6f5880822c8d0bd16" name="a0b56cc5e3e88c6b6f5880822c8d0bd16"></a>
+typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>logType_t</b></td></tr>
+<tr class="memdesc:a0b56cc5e3e88c6b6f5880822c8d0bd16"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type is designed to create variables that store different log types. <br /></td></tr>
+<tr class="separator:a0b56cc5e3e88c6b6f5880822c8d0bd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa591a210ec6b97bebde23481f7723018" id="r_aa591a210ec6b97bebde23481f7723018"><td class="memItemLeft" align="right" valign="top"><a id="aa591a210ec6b97bebde23481f7723018" name="aa591a210ec6b97bebde23481f7723018"></a>
+typedef char *&#160;</td><td class="memItemRight" valign="bottom"><b>logLabel_t</b></td></tr>
+<tr class="memdesc:aa591a210ec6b97bebde23481f7723018"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type creates variables to store the LOG name or label. <br /></td></tr>
+<tr class="separator:aa591a210ec6b97bebde23481f7723018"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ad32193f36f27b64a34f37c036315b507" id="r_ad32193f36f27b64a34f37c036315b507"><td class="memItemLeft" align="right" valign="top"><a id="ad32193f36f27b64a34f37c036315b507" name="ad32193f36f27b64a34f37c036315b507"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad32193f36f27b64a34f37c036315b507">logType_t</a> { <br />
-&#160;&#160;<b>LOG_INFO_T</b>
-, <b>LOG_DEBUG_T</b>
-, <b>LOG_WARNING_T</b>
-, <b>LOG_ERROR_T</b>
-, <br />
-&#160;&#160;<b>LOG_FATAL_T</b>
-, <b>LOG_UNSUPPORTED</b>
-<br />
- }</td></tr>
-<tr class="memdesc:ad32193f36f27b64a34f37c036315b507"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the type to select the LOG type. <br /></td></tr>
-<tr class="separator:ad32193f36f27b64a34f37c036315b507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf05bef91c6a4c8e25806e08e70ae184" id="r_aaf05bef91c6a4c8e25806e08e70ae184"><td class="memItemLeft" align="right" valign="top"><a id="aaf05bef91c6a4c8e25806e08e70ae184" name="aaf05bef91c6a4c8e25806e08e70ae184"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>logFlagType_t</b> { <br />
 &#160;&#160;<b>PATH_EN_T</b> = (1 &lt;&lt; 0)
 , <b>NAME_FILE_EN_T</b> = (1 &lt;&lt; 1)
 , <b>LINE_EN_T</b> = (1 &lt;&lt; 2)
 , <b>DATE_EN_T</b> = (1 &lt;&lt; 3)
 , <br />
-&#160;&#160;<b>ALL_DISABLED_T</b> = (0x00)
+&#160;&#160;<b>LOG_ENABLE_T</b> = (1 &lt;&lt; 4)
+, <b>ALL_DISABLED_T</b> = (0x00)
 , <b>ALL_ENABLED_T</b> = (0x0F)
 <br />
  }</td></tr>
 <tr class="separator:aaf05bef91c6a4c8e25806e08e70ae184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ca3707f86965e11982dd59d7d5b9240" id="r_a4ca3707f86965e11982dd59d7d5b9240"><td class="memItemLeft" align="right" valign="top"><a id="a4ca3707f86965e11982dd59d7d5b9240" name="a4ca3707f86965e11982dd59d7d5b9240"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ca3707f86965e11982dd59d7d5b9240">logTextColor_t</a> { <br />
+&#160;&#160;<b>TXT_BLUE</b>
+, <b>TXT_GREEN</b>
+, <b>TXT_YELLOW</b>
+, <b>TXT_ORAGE</b>
+, <br />
+&#160;&#160;<b>TXT_RED</b>
+, <b>TXT_TURQUOISE</b>
+, <b>TXT_PURPLE</b>
+, <b>TXT_L_TURQUOISE</b>
+, <br />
+&#160;&#160;<b>TXT_NAVY_BLUE</b>
+, <b>TXT_GREEN_DRK</b>
+, <b>TXT_VINE</b>
+, <b>TXT_WHITE</b>
+, <br />
+&#160;&#160;<b>TXT_PINK</b>
+, <b>TXT_PINKL</b>
+, <b>TXT_CYAN</b>
+, <b>TXT_BROWN</b>
+, <br />
+&#160;&#160;<b>TXT_GRAY</b>
+, <b>TXT_BLACK</b>
+, <b>TXT_LILAC</b>
+, <b>TXT_L_LILAC</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a4ca3707f86965e11982dd59d7d5b9240"><td class="mdescLeft">&#160;</td><td class="mdescRight">These are the LOG colors supported for this version. They should be pased in CREATE_LOG_MACRO(name, color). <br /></td></tr>
+<tr class="separator:a4ca3707f86965e11982dd59d7d5b9240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a23150f0002489958ddb2505123931378" id="r_a23150f0002489958ddb2505123931378"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23150f0002489958ddb2505123931378">log_message</a> (<a class="el" href="#ad32193f36f27b64a34f37c036315b507">logType_t</a> logType, const char *file, int line, const char *fmt,...)</td></tr>
-<tr class="memdesc:a23150f0002489958ddb2505123931378"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the abstraction function to generate the message for the differents LOGS.  <br /></td></tr>
-<tr class="separator:a23150f0002489958ddb2505123931378"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af011428bfd841b079178aee63539f4df" id="r_af011428bfd841b079178aee63539f4df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af011428bfd841b079178aee63539f4df">confLog</a> (<a class="el" href="#ad32193f36f27b64a34f37c036315b507">logType_t</a> logType, logFlagType_t config)</td></tr>
+<tr class="memitem:ab420c9204b90ce407825494140832ba5" id="r_ab420c9204b90ce407825494140832ba5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab420c9204b90ce407825494140832ba5">log_message</a> (<a class="el" href="#a0b56cc5e3e88c6b6f5880822c8d0bd16">logType_t</a> logType, <a class="el" href="#a4ca3707f86965e11982dd59d7d5b9240">logTextColor_t</a> color, <a class="el" href="#aa591a210ec6b97bebde23481f7723018">logLabel_t</a> label, char *file, int line, const char *fmt, va_list args)</td></tr>
+<tr class="memdesc:ab420c9204b90ce407825494140832ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the abstraction function to generate the message for the differents LOGS.  <br /></td></tr>
+<tr class="separator:ab420c9204b90ce407825494140832ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af011428bfd841b079178aee63539f4df" id="r_af011428bfd841b079178aee63539f4df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af011428bfd841b079178aee63539f4df">confLog</a> (<a class="el" href="#a0b56cc5e3e88c6b6f5880822c8d0bd16">logType_t</a> logType, logFlagType_t config)</td></tr>
 <tr class="memdesc:af011428bfd841b079178aee63539f4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets the LOG configuration.  <br /></td></tr>
 <tr class="separator:af011428bfd841b079178aee63539f4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae010172e4655105810dde969516da6a3" id="r_ae010172e4655105810dde969516da6a3"><td class="memItemLeft" align="right" valign="top"><a id="ae010172e4655105810dde969516da6a3" name="ae010172e4655105810dde969516da6a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printGitVersion</b> (const char *file)</td></tr>
+<tr class="separator:ae010172e4655105810dde969516da6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829aa93a78b10314f302a53c91db66c1" id="r_a829aa93a78b10314f302a53c91db66c1"><td class="memItemLeft" align="right" valign="top"><a id="a829aa93a78b10314f302a53c91db66c1" name="a829aa93a78b10314f302a53c91db66c1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printGitVersionLOG</b> (void)</td></tr>
+<tr class="separator:a829aa93a78b10314f302a53c91db66c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This library provides a base to make a simple LOG for different aplications @NOTE: The color of the LOG depends of the terminal or console. This take effect on systems based of UNIX. </p>
+<div class="textblock"><p>This library provides a base to make a simple LOG for different aplications @NOTE: The color of the LOG depends of the terminal or console. It takes effect on systems based of UNIX. </p>
 <dl class="section author"><dt>Author</dt><dd>EM2 (<a href="#" onclick="location.href='mai'+'lto:'+'you'+'@d'+'oma'+'in'+'.co'+'m'; return false;">you@d<span class="obfuscator">.nosp@m.</span>omai<span class="obfuscator">.nosp@m.</span>n.com</a>) </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2024-11-29</dd></dl>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="log__module_8h.html">log_module.h</a>&quot;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> <span class="keyword">const</span> *argv[])</div>
-<div class="line">{</div>
-<div class="line">    confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T);</div>
-<div class="line">    confLog(LOG_DEBUG_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T);</div>
-<div class="line">    confLog(LOG_WARNING_T, PATH_EN_T | NAME_FILE_EN_T);</div>
-<div class="line">    confLog(LOG_ERROR_T, PATH_EN_T);</div>
-<div class="line"> </div>
-<div class="line">    <a class="code hl_define" href="#ae69d735f8291bd2aff230fe6ffb4d4b3">LOG_INFO</a>(<span class="stringliteral">&quot;This is an INFO message.&quot;</span>);</div>
-<div class="line">    <a class="code hl_define" href="#ac06cfc686322558f590c50eab8622ebd">LOG_DEBUG</a>(<span class="stringliteral">&quot;This is a DEBUG message.&quot;</span>);</div>
-<div class="line">    <a class="code hl_define" href="#afde44945335adc0c0ae2986fea13438f">LOG_WARNING</a>(<span class="stringliteral">&quot;This is a WARNING message.&quot;</span>);</div>
-<div class="line">    <a class="code hl_define" href="#ae6fc70e87e424e7083c63696b8fb9e78">LOG_ERROR</a>(<span class="stringliteral">&quot;This is an ERROR message.&quot;</span>);</div>
-<div class="line">    <a class="code hl_define" href="#aa842d0e31b246c53e60d17b2d076e193">LOG_FATAL</a>(<span class="stringliteral">&quot;This is a FATAL message.&quot;</span>);</div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line">Output:</div>
-<div class="line">[INFO] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\main.c (Line 10) [2024-12-02 09:57:11]: This is an INFO message.</div>
-<div class="line">[DBG] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\main.c (Line 11) : This is a DEBUG message.</div>
-<div class="line">[WRN] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\main.c : This is a WARNING message.</div>
-<div class="line">[ERR] C:\Users\a_gc\Documents\Q\c\VS_CODE\LOG_test\ExampleLOG\: This is an ERROR message.</div>
-<div class="line">[FATAL] : This is a FATAL message.</div>
-<div class="ttc" id="alog__module_8h_html"><div class="ttname"><a href="log__module_8h.html">log_module.h</a></div><div class="ttdoc">This library provides a base to make a simple LOG for different aplications @NOTE: The color of the L...</div></div>
-<div class="ttc" id="alog__module_8h_html_aa842d0e31b246c53e60d17b2d076e193"><div class="ttname"><a href="#aa842d0e31b246c53e60d17b2d076e193">LOG_FATAL</a></div><div class="ttdeci">#define LOG_FATAL(fmt,...)</div><div class="ttdoc">This is the MACRO fuctions for FATAL LOG.</div><div class="ttdef"><b>Definition</b> log_module.h:128</div></div>
-<div class="ttc" id="alog__module_8h_html_ac06cfc686322558f590c50eab8622ebd"><div class="ttname"><a href="#ac06cfc686322558f590c50eab8622ebd">LOG_DEBUG</a></div><div class="ttdeci">#define LOG_DEBUG(fmt,...)</div><div class="ttdoc">This is the MACRO fuctions for DEBUG LOG.</div><div class="ttdef"><b>Definition</b> log_module.h:110</div></div>
-<div class="ttc" id="alog__module_8h_html_ae69d735f8291bd2aff230fe6ffb4d4b3"><div class="ttname"><a href="#ae69d735f8291bd2aff230fe6ffb4d4b3">LOG_INFO</a></div><div class="ttdeci">#define LOG_INFO(fmt,...)</div><div class="ttdoc">This is the MACRO fuctions for INFO LOG.</div><div class="ttdef"><b>Definition</b> log_module.h:104</div></div>
-<div class="ttc" id="alog__module_8h_html_ae6fc70e87e424e7083c63696b8fb9e78"><div class="ttname"><a href="#ae6fc70e87e424e7083c63696b8fb9e78">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(fmt,...)</div><div class="ttdoc">This is the MACRO fuctions for ERROR LOG.</div><div class="ttdef"><b>Definition</b> log_module.h:122</div></div>
-<div class="ttc" id="alog__module_8h_html_afde44945335adc0c0ae2986fea13438f"><div class="ttname"><a href="#afde44945335adc0c0ae2986fea13438f">LOG_WARNING</a></div><div class="ttdeci">#define LOG_WARNING(fmt,...)</div><div class="ttdoc">This is the MACRO fuctions for WARNING LOG.</div><div class="ttdef"><b>Definition</b> log_module.h:116</div></div>
-</div><!-- fragment --> <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024-11-29 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ac06cfc686322558f590c50eab8622ebd" name="ac06cfc686322558f590c50eab8622ebd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac06cfc686322558f590c50eab8622ebd">&#9670;&#160;</a></span>LOG_DEBUG</h2>
+<a id="a39d445cdfa877da3e12654761a6b36bf" name="a39d445cdfa877da3e12654761a6b36bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d445cdfa877da3e12654761a6b36bf">&#9670;&#160;</a></span>CREATE_LOG_MACRO</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_DEBUG</td>
+          <td class="memname">#define CREATE_LOG_MACRO</td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a23150f0002489958ddb2505123931378">log_message</a>(LOG_DEBUG_T, __FILE__, __LINE__, fmt, ##__VA_ARGS__)</div>
-<div class="ttc" id="alog__module_8h_html_a23150f0002489958ddb2505123931378"><div class="ttname"><a href="#a23150f0002489958ddb2505123931378">log_message</a></div><div class="ttdeci">void log_message(logType_t logType, const char *file, int line, const char *fmt,...)</div><div class="ttdoc">This is the abstraction function to generate the message for the differents LOGS.</div><div class="ttdef"><b>Definition</b> log_module.c:3</div></div>
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="#a0b56cc5e3e88c6b6f5880822c8d0bd16">logType_t</a> LOG_##name##_T = __COUNTER__; \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="#aa591a210ec6b97bebde23481f7723018">logLabel_t</a> LABEL_##name = #name;\</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> LOG_##name(<span class="keywordtype">char</span> *file, <span class="keywordtype">int</span> line, <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, ...) { \</div>
+<div class="line">        va_list args; \</div>
+<div class="line">        va_start(args, fmt); \</div>
+<div class="line">        log_message(LOG_##name##_T, color, LABEL_##name, file, line, fmt, args); \</div>
+<div class="line">        va_end(args); \</div>
+<div class="line">    }</div>
+<div class="ttc" id="alog__module_8h_html_a0b56cc5e3e88c6b6f5880822c8d0bd16"><div class="ttname"><a href="#a0b56cc5e3e88c6b6f5880822c8d0bd16">logType_t</a></div><div class="ttdeci">uint8_t logType_t</div><div class="ttdoc">This type is designed to create variables that store different log types.</div><div class="ttdef"><b>Definition</b> log_module.h:189</div></div>
+<div class="ttc" id="alog__module_8h_html_aa591a210ec6b97bebde23481f7723018"><div class="ttname"><a href="#aa591a210ec6b97bebde23481f7723018">logLabel_t</a></div><div class="ttdeci">char * logLabel_t</div><div class="ttdoc">This type creates variables to store the LOG name or label.</div><div class="ttdef"><b>Definition</b> log_module.h:195</div></div>
 </div><!-- fragment -->
-<p>This is the MACRO fuctions for DEBUG LOG. </p>
-
 </div>
 </div>
-<a id="ae6fc70e87e424e7083c63696b8fb9e78" name="ae6fc70e87e424e7083c63696b8fb9e78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6fc70e87e424e7083c63696b8fb9e78">&#9670;&#160;</a></span>LOG_ERROR</h2>
+<a id="a2bebd3800fadbad87d4ae76050dc7191" name="a2bebd3800fadbad87d4ae76050dc7191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bebd3800fadbad87d4ae76050dc7191">&#9670;&#160;</a></span>FL</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_ERROR</td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+          <td class="memname">#define FL&#160;&#160;&#160;__FILE__, __LINE__</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a23150f0002489958ddb2505123931378">log_message</a>(LOG_ERROR_T, __FILE__, __LINE__, fmt, ##__VA_ARGS__)</div>
-</div><!-- fragment -->
-<p>This is the MACRO fuctions for ERROR LOG. </p>
+
+<p>This MACRO was created to pass the current line and file where the LOG was called It must be used with every created LOG. For instance, if you created the LOG named USER, it should be used as follows: </p>
+<p>CREATE_LOG_MACRO(USER, TXT_BLUE);</p>
+<p>LOG_USER(LF,"Hello Dog"); LOG_USER(LF,"value: %d", value); </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_an-example.html#a2">An</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="aa842d0e31b246c53e60d17b2d076e193" name="aa842d0e31b246c53e60d17b2d076e193"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa842d0e31b246c53e60d17b2d076e193">&#9670;&#160;</a></span>LOG_FATAL</h2>
+<a id="a00fc9d4bb97208570d2ae4d4e658d56c" name="a00fc9d4bb97208570d2ae4d4e658d56c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00fc9d4bb97208570d2ae4d4e658d56c">&#9670;&#160;</a></span>GIT_VERSION</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_FATAL</td>
+          <td class="memname">#define GIT_VERSION</td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a23150f0002489958ddb2505123931378">log_message</a>(LOG_FATAL_T, __FILE__, __LINE__, fmt, ##__VA_ARGS__)</div>
+<b>Value:</b><div class="fragment"><div class="line">printGitVersion(__FILE__)</div>
 </div><!-- fragment -->
-<p>This is the MACRO fuctions for FATAL LOG. </p>
+<p>This macro prints the branch and the commit of the module wich calls the macro. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_an-example.html#a0">An</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="ae69d735f8291bd2aff230fe6ffb4d4b3" name="ae69d735f8291bd2aff230fe6ffb4d4b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae69d735f8291bd2aff230fe6ffb4d4b3">&#9670;&#160;</a></span>LOG_INFO</h2>
+<a id="a7a1774fd4ea32240858c457788699b4a" name="a7a1774fd4ea32240858c457788699b4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a1774fd4ea32240858c457788699b4a">&#9670;&#160;</a></span>GIT_VERSION_LOG</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOG_INFO</td>
+          <td class="memname">#define GIT_VERSION_LOG</td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a23150f0002489958ddb2505123931378">log_message</a>(LOG_INFO_T, __FILE__, __LINE__, fmt, ##__VA_ARGS__)</div>
+<b>Value:</b><div class="fragment"><div class="line">printGitVersionLOG()</div>
 </div><!-- fragment -->
-<p>This is the MACRO fuctions for INFO LOG. </p>
-
-</div>
-</div>
-<a id="afde44945335adc0c0ae2986fea13438f" name="afde44945335adc0c0ae2986fea13438f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afde44945335adc0c0ae2986fea13438f">&#9670;&#160;</a></span>LOG_WARNING</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_WARNING</td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a23150f0002489958ddb2505123931378">log_message</a>(LOG_WARNING_T, __FILE__, __LINE__, fmt, ##__VA_ARGS__)</div>
-</div><!-- fragment -->
-<p>This is the MACRO fuctions for WARNING LOG. </p>
+<p>This macro prints the branch and the commit of the log_module. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_an-example.html#a1">An</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -334,7 +437,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void confLog </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#ad32193f36f27b64a34f37c036315b507">logType_t</a></td>          <td class="paramname"><span class="paramname"><em>logType</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a0b56cc5e3e88c6b6f5880822c8d0bd16">logType_t</a></td>          <td class="paramname"><span class="paramname"><em>logType</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -348,27 +451,27 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logType</td><td>indicates the type of LOG to be configured. </td></tr>
-    <tr><td class="paramname">config</td><td>this parameter contains the desired flag configurations. You could do several OR combination to select the different LOG options (PATH_EN_T, NAME_FILE_EN_T, LINE_EN_T, DATE_EN_T)</td></tr>
+    <tr><td class="paramname">config</td><td>this parameter contains the desired flag configurations. You could make several OR combination to select the different LOG options (PATH_EN_T, NAME_FILE_EN_T, LINE_EN_T, DATE_EN_T)</td></tr>
   </table>
   </dd>
 </dl>
-<p>Example to enables only shows the path and the name of the file where the LOG was called:</p>
-<p>confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T);</p>
-<p>To disable any configuration flag, you have to chosse again the configuration flags</p>
-<p>Example to disable path and the name of the file where the LOG was called, after these was configured:</p>
-<p>confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T)</p>
-<p>confLog(LOG_INFO_T, DATE_EN_T)</p>
+<p>Example to enable only the path and the name of the file where the LOG was called:</p>
+<p>confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LOG_ENABLE_T);</p>
+<p>To disable any configuration flag, it must be chossen the configuration flags again.</p>
+<p>Example to disable path and name of the file:</p>
+<p>confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LOG_ENABLE_T)</p>
+<p>confLog(LOG_INFO_T, DATE_EN_T | LOG_ENABLE_T)</p>
 <p>The line above only configurates the date when the LOG was called and it omits the rest of the flags.</p>
 <p>If you want to enable all configuration flags you have to use:</p>
-<p>confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T);</p>
+<p>confLog(LOG_INFO_T, PATH_EN_T | NAME_FILE_EN_T | LINE_EN_T | DATE_EN_T | LOG_ENABLE_T);</p>
 <p>or</p>
 <p>confLog(LOG_INFO_T, ALL_ENABLED_T)</p>
-<p>On the other hand, if a LOG is not configured, all configuration flags are disabled for this LOG. </p>
+<p>On the other hand, if a LOG is not configured, all configuration flags are disabled for this LOG except the LOG_ENABLE_T option. </p>
 
 </div>
 </div>
-<a id="a23150f0002489958ddb2505123931378" name="a23150f0002489958ddb2505123931378"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23150f0002489958ddb2505123931378">&#9670;&#160;</a></span>log_message()</h2>
+<a id="ab420c9204b90ce407825494140832ba5" name="ab420c9204b90ce407825494140832ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab420c9204b90ce407825494140832ba5">&#9670;&#160;</a></span>log_message()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -376,12 +479,22 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void log_message </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#ad32193f36f27b64a34f37c036315b507">logType_t</a></td>          <td class="paramname"><span class="paramname"><em>logType</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a0b56cc5e3e88c6b6f5880822c8d0bd16">logType_t</a></td>          <td class="paramname"><span class="paramname"><em>logType</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a4ca3707f86965e11982dd59d7d5b9240">logTextColor_t</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aa591a210ec6b97bebde23481f7723018">logLabel_t</a></td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -396,7 +509,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -405,6 +518,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logType</td><td>is the LOG type and indicates the context to use the LOG particularities. </td></tr>
+    <tr><td class="paramname">color</td><td>is the log color. </td></tr>
+    <tr><td class="paramname">label</td><td>is the log name or label. </td></tr>
     <tr><td class="paramname">file</td><td>is the file name where the LOG was called. </td></tr>
     <tr><td class="paramname">line</td><td>is the line number where the LOG was called. </td></tr>
     <tr><td class="paramname">fmt</td><td>this is the string format to print the data or message. </td></tr>
@@ -418,8 +533,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-<img class="footer" src="cursoCIntermedio.png"  height="100px"/>
-</small></address>
+<img class="footer" src="cursoCIntermedio.png"  height="100px"/></small></address>
 </div><!-- doc-content -->
 </body>
 </html>
